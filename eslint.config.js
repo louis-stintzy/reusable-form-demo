@@ -10,7 +10,7 @@ import prettierPlugin from 'eslint-plugin-prettier';
 
 export default tseslint.config(
   eslint.configs.recommended,
-  importPlugin.flatConfigs.recommended,
+  // importPlugin.flatConfigs.recommended,
   jsxA11y.flatConfigs.recommended,
   reactPlugin.configs.flat.recommended,
   reactPlugin.configs.flat['jsx-runtime'],
@@ -39,7 +39,7 @@ export default tseslint.config(
     plugins: {
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
-      // import: importPlugin, // remplacé par importPlugin.flatConfigs.recommended
+      import: importPlugin, // remplacé par importPlugin.flatConfigs.recommended
       // "jsx-a11y": jsxA11y, // remplacé par jsxA11y.flatConfigs.recommended
       // react: reactPlugin, // remplacé par reactPlugin.configs.flat.recommended et reactPlugin.configs.flat["jsx-runtime"]
       prettier: prettierPlugin, // remplacé par eslintPluginPrettierRecommended

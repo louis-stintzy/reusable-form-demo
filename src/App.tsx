@@ -1,10 +1,12 @@
+import { Outlet } from 'react-router-dom';
+
 import './App.css';
 
 function App() {
   return (
-    <>
-      <p>Reusable Form</p>
-    </>
+    <div className="App">
+      <Outlet />
+    </div>
   );
 }
 
