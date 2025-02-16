@@ -1,3 +1,6 @@
+import { NavLink } from 'react-router-dom';
+import './SIgnupForm.css';
+
 function SignupForm() {
   return (
     <div className="signup-form__container">
@@ -6,43 +9,43 @@ function SignupForm() {
         <form className="signup-form__form">
           <div className="signup-form__input-container">
             <label htmlFor="username" className="signup-form__label">
-              Username
+              ENTER NAME
             </label>
             <input
               type="text"
               name="username"
               id="username"
-              placeholder="Username"
+              placeholder="Enter Name"
               className="signup-form__input"
             />
           </div>
           <div className="signup-form__input-container">
             <label htmlFor="email" className="signup-form__label">
-              Email
+              ENTER EMAIL
             </label>
             <input
               type="email"
               name="email"
               id="email"
-              placeholder="Email"
+              placeholder="Enter Email"
               className="signup-form__input"
             />
           </div>
           <div className="signup-form__input-container">
             <label htmlFor="password" className="signup-form__label">
-              Password
+              ENTER PASSWORD
             </label>
             <input
               type="password"
               name="password"
               id="password"
-              placeholder="Password"
+              placeholder="Enter Password"
               className="signup-form__input"
             />
           </div>
           <div className="signup-form__input-container">
             <label htmlFor="confirm-password" className="signup-form__label">
-              Confirm password
+              CONFIRM PASSWORD
             </label>
             <input
               type="password"
@@ -52,18 +55,22 @@ function SignupForm() {
               className="signup-form__input"
             />
           </div>
-          <button type="submit" className="signup-form__button">
-            Sign up
-          </button>
-          <div className="signup-form__link-container">
-            <p className="signup-form__link-message">
-              Already have an account ?
-            </p>
-            <a href="#" className="signup-form__link">
-              Login now
-            </a>
+          <div className="signup-form__button-container">
+            <div className="signup-form__button-wrapper">
+              <button type="submit" className="signup-form__button">
+                Sign up
+              </button>
+            </div>
           </div>
         </form>
+        <div className="signup-form__link-container">
+          <p className="signup-form__link-message">
+            Already have an account ?{' '}
+          </p>
+          <NavLink className="signup-form__link" to="/login">
+            Login now
+          </NavLink>
+        </div>
       </div>
     </div>
   );

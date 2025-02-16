@@ -1,0 +1,197 @@
+/* Inspired by the YouTube video: https://www.youtube.com/watch?v=Ygi-BDNwxPk
+"Input Field Animation Using HTML & CSS | Floating Label CSS" - Bedimcode  */
+
+/* ----- Form Container ----- */
+.signup-form__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 560px;
+  width: 320px;
+}
+
+/* ----- Base ----- */
+.signup-form__form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.5rem;
+}
+
+/* ----- Title ----- */
+.signup-form__title {
+  position: relative;
+  margin-bottom: 30px;
+  font-size: var(--large-font-size);
+  font-weight: 600;
+  color: var(--gray-color-dark);
+}
+
+.signup-form__title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 50px;
+  height: 2px;
+  background: var(--first-color);
+}
+
+/* ----- Input ----- */
+.signup-form__input-container {
+  position: relative;
+  height: 70px;
+  background-color: var(--black-color);
+}
+
+.signup-form__label {
+  border: 0;
+  outline: none;
+  /* font-size: var(--normal-font-size); */
+  font-family: var(--body-font);
+
+  z-index: 100;
+  position: absolute;
+  top: 16px;
+  left: 20px;
+  font-size: var(--tiny-font-size);
+  font-weight: 600;
+  transition: 0.2s;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.signup-form__input {
+  border: 0;
+  outline: none;
+  font-size: var(--normal-font-size);
+  font-family: var(--body-font);
+  box-sizing: border-box;
+  border: 2.5px solid var(--black-color);
+  background-color: var(--third-color-light);
+  width: 100%;
+  z-index: 10;
+  padding: 18px;
+  transition: transform 0.3s;
+}
+
+.signup-form__input::placeholder {
+  transition: opacity 0.5s;
+}
+
+.signup-form__input:focus::placeholder {
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.signup-form__input:focus {
+  transform: translate(-8px, -8px);
+}
+
+.signup-form__input:not(:placeholder-shown).signup-form__input:not(:focus) {
+  transform: translate(-8px, -8px);
+}
+
+/* Assurer que le label est visible lorsque l'input est en focus */
+/* .signup-form__input-container:focus-within .signup-form__label,
+.signup-form__input:not(:placeholder-shown) ~ .signup-form__label {
+  opacity: 1;
+  top: 5px;
+  left: 12px;
+  font-size: var(--tiny-font-size);
+  transition: 0.3s ease-in-out;
+} */
+
+/* Rendre le label visible lorsque l'input est en focus ou a du contenu */
+.signup-form__input-container:has(.signup-form__input:focus)
+  .signup-form__label,
+.signup-form__input-container:has(.signup-form__input:not(:placeholder-shown))
+  .signup-form__label {
+  opacity: 1;
+  top: 5px;
+  left: 12px;
+  font-size: var(--tiny-font-size);
+  transition: 0.3s ease-in-out;
+}
+
+/* ----- Button ----- */
+.signup-form__button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.signup-form__button-wrapper {
+  border: 0;
+  outline: none;
+  background-color: var(--black-color);
+  width: 112.52px;
+}
+
+.signup-form__button {
+  padding: 0.875rem 1.5rem;
+  font-family: var(--body-font);
+  font-size: var(--small-font-size);
+  color: var(--gray-color-dark);
+  background-color: var(--first-color);
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.signup-form__button:hover {
+  transform: translate(-6px, -6px);
+}
+
+/* .signup-form__button:active {
+  transform: translateY(2px);
+  background-color: var(--gray-color-dark);
+  color: white;
+} */
+
+/* ----- Link ----- */
+.signup-form__link-container {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.signup-form__link {
+  font-family: var(--body-font);
+  font-size: var(--small-font-size);
+  color: var(--second-color);
+  text-decoration: none;
+}
+
+.signup-form__link:hover {
+  text-decoration: underline;
+}
+
+.signup-form__link-message {
+  color: var(--light-gray-color);
+  font-size: var(--small-font-size);
+  font-weight: 500;
+  margin-left: 10px;
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For small devices */
+@media screen and (max-width: 640px) {
+  .signup-form__input-container {
+    height: 65px;
+  }
+  .signup-form__input {
+    font-size: var(--small-font-size);
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .signup-form__wrapper {
+    width: auto;
+  }
+}
+
+/* @media screen and (max-height: 640px) {
+  .signup-form__input {
+    font-size: var(--small-font-size);
+  }
+  .signup-form__wrapper {
+    height: 100%;
+  }
+} */
