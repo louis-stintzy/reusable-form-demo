@@ -4,6 +4,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 
 import './SIgnupForm.css';
 import { RegisterCredentials } from '../../../@types/auth';
+import FormInput from '../../Common/ReusableForm/SubComponents/FormInput';
 
 function SignupForm() {
   const {
@@ -20,58 +21,69 @@ function SignupForm() {
       <div className="signup-form__wrapper">
         <h2 className="signup-form__title">Sign up</h2>
         <form onSubmit={handleSubmit(onSubmit)} className="signup-form__form">
-          <div className="signup-form__input-container">
-            <label htmlFor="username" className="signup-form__label">
-              ENTER NAME
-            </label>
-            <input
-              {...register('name', { required: true })}
-              type="text"
-              id="username"
-              placeholder="Enter Name"
-              className="signup-form__input"
-            />
-            {errors.name && <span>This field is required</span>}
-          </div>
-          <div className="signup-form__input-container">
-            <label htmlFor="email" className="signup-form__label">
-              ENTER EMAIL
-            </label>
-            <input
-              {...register('email', { required: true })}
-              type="email"
-              id="email"
-              placeholder="Enter Email"
-              className="signup-form__input"
-            />
-            {errors.email && <span>This field is required</span>}
-          </div>
-          <div className="signup-form__input-container">
-            <label htmlFor="password" className="signup-form__label">
-              ENTER PASSWORD
-            </label>
-            <input
-              {...register('password', { required: true })}
-              type="password"
-              id="password"
-              placeholder="Enter Password"
-              className="signup-form__input"
-            />
-            {errors.password && <span>This field is required</span>}
-          </div>
-          <div className="signup-form__input-container">
-            <label htmlFor="confirm-password" className="signup-form__label">
-              CONFIRM PASSWORD
-            </label>
-            <input
-              {...register('confirmPassword', { required: true })}
-              type="password"
-              id="confirm-password"
-              placeholder="Confirm password"
-              className="signup-form__input"
-            />
-            {errors.confirmPassword && <span>This field is required</span>}
-          </div>
+          <FormInput
+            classNames={{
+              inputContainer: 'signup-form__input-container',
+              label: 'signup-form__label',
+              input: 'signup-form__input',
+              errorContainer: 'signup-form__error-container',
+              error: 'signup-form__error',
+            }}
+            label="ENTER NAME"
+            id="name"
+            type="text"
+            placeholder="Enter Name"
+            autoComplete="given-name"
+            error={errors.name ? 'This field is required' : ''}
+            register={register('name', { required: true })}
+          />
+          <FormInput
+            classNames={{
+              inputContainer: 'signup-form__input-container',
+              label: 'signup-form__label',
+              input: 'signup-form__input',
+              errorContainer: 'signup-form__error-container',
+              error: 'signup-form__error',
+            }}
+            label="ENTER EMAIL"
+            id="email"
+            type="email"
+            placeholder="Enter Email"
+            autoComplete="email"
+            error={errors.email ? 'This field is required' : ''}
+            register={register('email', { required: true })}
+          />
+          <FormInput
+            classNames={{
+              inputContainer: 'signup-form__input-container',
+              label: 'signup-form__label',
+              input: 'signup-form__input',
+              errorContainer: 'signup-form__error-container',
+              error: 'signup-form__error',
+            }}
+            label="ENTER PASSWORD"
+            id="password"
+            type="password"
+            placeholder="Enter Password"
+            autoComplete="new-password"
+            error={errors.password ? 'This field is required' : ''}
+            register={register('password', { required: true })}
+          />
+          <FormInput
+            classNames={{
+              inputContainer: 'signup-form__input-container',
+              label: 'signup-form__label',
+              input: 'signup-form__input',
+              errorContainer: 'signup-form__error-container',
+              error: 'signup-form__error',
+            }}
+            label="CONFIRM PASSWORD"
+            id="confirm-password"
+            type="password"
+            placeholder="Confirm Password"
+            error={errors.confirmPassword ? 'This field is required' : ''}
+            register={register('confirmPassword', { required: true })}
+          />
           <div className="signup-form__button-container">
             <div className="signup-form__button-wrapper">
               <button type="submit" className="signup-form__button">
