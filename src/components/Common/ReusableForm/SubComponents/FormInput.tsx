@@ -1,21 +1,4 @@
-import { InputHTMLAttributes } from 'react';
-import { UseFormRegisterReturn } from 'react-hook-form';
-
-// FormInput incluent toutes les propriétés natives d'un <input> HTML : type, placeholder, required, etc. (pas besoin de redéfinir manuellement des props)
-// et les propriétés personnalisées suivantes:
-
-interface FormInputProps extends InputHTMLAttributes<HTMLInputElement> {
-  classNames: {
-    inputContainer: string;
-    label: string;
-    input: string;
-    errorContainer: string;
-    error: string;
-  };
-  label: string;
-  error?: string;
-  register: UseFormRegisterReturn;
-}
+import { FormInputProps } from '../../../../@types/form';
 
 function FormInput({
   classNames,

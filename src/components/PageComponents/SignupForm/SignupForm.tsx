@@ -1,10 +1,10 @@
 import { NavLink } from 'react-router-dom';
-
 import { useForm, SubmitHandler } from 'react-hook-form';
-
-import './SIgnupForm.css';
 import { RegisterCredentials } from '../../../@types/auth';
 import FormInput from '../../Common/ReusableForm/SubComponents/FormInput';
+import { signupFormFields } from '../../../constants/formFields';
+
+import './SignupForm.css';
 
 function SignupForm() {
   const {
@@ -21,7 +21,26 @@ function SignupForm() {
       <div className="signup-form__wrapper">
         <h2 className="signup-form__title">Sign up</h2>
         <form onSubmit={handleSubmit(onSubmit)} className="signup-form__form">
-          <FormInput
+          {signupFormFields.map((field) => (
+            <FormInput
+              key={field.id}
+              classNames={{
+                inputContainer: 'signup-form__input-container',
+                label: 'signup-form__label',
+                input: 'signup-form__input',
+                errorContainer: 'signup-form__error-container',
+                error: 'signup-form__error',
+              }}
+              label={field.label}
+              id={field.id}
+              type={field.type}
+              placeholder={field.placeholder}
+              autoComplete={field.autoComplete}
+              error={errors[field.id] ? 'This field is required' : ''}
+              register={register(field.id, { required: field.required })}
+            />
+          ))}
+          {/* <FormInput
             classNames={{
               inputContainer: 'signup-form__input-container',
               label: 'signup-form__label',
@@ -83,7 +102,7 @@ function SignupForm() {
             placeholder="Confirm Password"
             error={errors.confirmPassword ? 'This field is required' : ''}
             register={register('confirmPassword', { required: true })}
-          />
+          /> */}
           <div className="signup-form__button-container">
             <div className="signup-form__button-wrapper">
               <button type="submit" className="signup-form__button">
