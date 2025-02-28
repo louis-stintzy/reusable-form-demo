@@ -8,6 +8,7 @@ import FormInput from '../../Common/ReusableForm/SubComponents/FormInput';
 
 import './SignupForm.css';
 import FormSubmitButton from '../../Common/ReusableForm/SubComponents/FormSubmitButton';
+import FormTitle from '../../Common/ReusableForm/SubComponents/FormTitle';
 
 /*
  * Composant SignupForm : Formulaire d'inscription
@@ -32,7 +33,8 @@ function SignupForm() {
   return (
     <div className="signup-form__container">
       <div className="signup-form__wrapper">
-        <h2 className="signup-form__title">Sign up</h2>
+        <FormTitle formattedTitle="signup" title="Sign up" />
+        {/* <h2 className="signup-form__title">Sign up</h2> */}
         <form onSubmit={handleSubmit(onSubmit)} className="signup-form__form">
           {signupFormFields.map((field) => (
             <FormInput<RegisterCredentials>
