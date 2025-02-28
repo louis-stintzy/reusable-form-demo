@@ -1,8 +1,10 @@
 import { NavLink } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { RegisterCredentials } from '../../../@types/auth';
-import FormInput from '../../Common/ReusableForm/SubComponents/FormInput';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { signupFormSchema } from '../../../validators/signupFormSchema';
 import { signupFormFields } from '../../../constants/formFields';
+import FormInput from '../../Common/ReusableForm/SubComponents/FormInput';
 
 import './SignupForm.css';
 
@@ -10,6 +12,8 @@ import './SignupForm.css';
  * Composant SignupForm : Formulaire d'inscription
  * - Utilise `react-hook-form` pour gérer le formulaire (validation, soumission, etc.)
  * - Charge dynamiquement les champs du formulaire depuis `signupFormFields` (name, email, password, confirmPassword)
+ * - Valide les champs via `Zod` en utilisant `signupFormSchema`.
+ * - Affiche les messages d'erreur spécifiques à chaque champ en fonction du schéma Zod.
  */
 
 function SignupForm() {
@@ -17,7 +21,9 @@ function SignupForm() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<RegisterCredentials>();
+  } = useForm<RegisterCredentials>({
+    resolver: zodResolver(signupFormSchema),
+  });
 
   const onSubmit: SubmitHandler<RegisterCredentials> = (data) => {
     console.log('Données du formulaire', data);
@@ -42,7 +48,7 @@ function SignupForm() {
               type={field.type}
               placeholder={field.placeholder}
               autoComplete={field.autoComplete}
-              error={errors[field.id] ? 'This field is required' : ''}
+              error={errors[field.id]?.message}
               register={register}
               required={field.required}
             />

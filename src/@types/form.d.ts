@@ -35,6 +35,6 @@ export interface FormInputProps<T extends FieldValues>
   };
   label: string;
   id: Path<T>;
-  error?: string;
+  error?: string | null;
   register: UseFormRegister<T>;
 }
