@@ -7,6 +7,7 @@ import { signupFormFields } from '../../../constants/formFields';
 import FormInput from '../../Common/ReusableForm/SubComponents/FormInput';
 
 import './SignupForm.css';
+import FormSubmitButton from '../../Common/ReusableForm/SubComponents/FormSubmitButton';
 
 /*
  * Composant SignupForm : Formulaire d'inscription
@@ -53,13 +54,14 @@ function SignupForm() {
               required={field.required}
             />
           ))}
-          <div className="signup-form__button-container">
-            <div className="signup-form__button-wrapper">
-              <button type="submit" className="signup-form__button">
-                Sign up
-              </button>
-            </div>
-          </div>
+          <FormSubmitButton
+            formattedTitle="signup"
+            isLoading={false}
+            buttonText={{
+              loading: 'Signing up...',
+              default: 'Sign up',
+            }}
+          />
         </form>
         <div className="signup-form__link-container">
           <p className="signup-form__link-message">
