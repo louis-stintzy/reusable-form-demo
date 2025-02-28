@@ -2,18 +2,18 @@ import { NavLink } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { RegisterCredentials } from '../../../@types/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { signupFormSchema } from '../../../validators/signupFormSchema';
-import { signupFormFields } from '../../../constants/formFields';
+import { signupFormSchema } from './signupForm.schema';
+import { signupFormConfig } from './signupForm.config';
 import FormInput from '../../Common/ReusableForm/SubComponents/FormInput';
-
-import './SignupForm.css';
 import FormSubmitButton from '../../Common/ReusableForm/SubComponents/FormSubmitButton';
 import FormTitle from '../../Common/ReusableForm/SubComponents/FormTitle';
+
+import './SignupForm.style.css';
 
 /*
  * Composant SignupForm : Formulaire d'inscription
  * - Utilise `react-hook-form` pour gérer le formulaire (validation, soumission, etc.)
- * - Charge dynamiquement les champs du formulaire depuis `signupFormFields` (name, email, password, confirmPassword)
+ * - Charge dynamiquement les champs du formulaire depuis `signupFormConfig ` (name, email, password, confirmPassword)
  * - Valide les champs via `Zod` en utilisant `signupFormSchema`.
  * - Affiche les messages d'erreur spécifiques à chaque champ en fonction du schéma Zod.
  */
@@ -35,7 +35,7 @@ function SignupForm() {
       <div className="signup-form__wrapper">
         <FormTitle formattedTitle="signup" title="Sign up" />
         <form onSubmit={handleSubmit(onSubmit)} className="signup-form__form">
-          {signupFormFields.map((field) => (
+          {signupFormConfig.map((field) => (
             <FormInput<RegisterCredentials>
               key={field.id}
               formattedTitle="signup"
