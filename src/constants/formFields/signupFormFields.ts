@@ -1,6 +1,12 @@
+import { RegisterCredentials } from '../../@types/auth';
 import { FormField } from '../../@types/form';
 
-export const signupFormFields: FormField[] = [
+/*
+ * Définition des champs du formulaire d'inscription
+ * `FormField<RegisterCredentials>` assure que `id` correspond bien à une clé de `RegisterCredentials`.
+ */
+
+export const signupFormFields: FormField<RegisterCredentials>[] = [
   {
     label: 'ENTER NAME',
     id: 'name',
