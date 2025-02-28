@@ -1,4 +1,3 @@
-import { NavLink } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { RegisterCredentials } from '../../../@types/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -10,6 +9,7 @@ import FormTitle from '../../Common/ReusableForm/SubComponents/FormTitle';
 
 import './SignupForm.style.css';
 import { formatTitle } from '../../../utils/formatTitle';
+import FormFooter from '../../Common/ReusableForm/SubComponents/FormFooter';
 
 /*
  * Composant SignupForm : Formulaire d'inscription
@@ -62,17 +62,12 @@ function SignupForm() {
             buttonText={signupFormConfig.buttonText}
           />
         </form>
-        <div className={`${formattedTitle}-form__link-container`}>
-          <p className={`${formattedTitle}-form__link-message`}>
-            {signupFormConfig.footerLink?.text}
-          </p>
-          <NavLink
-            className={`${formattedTitle}-form__link`}
-            to={`${signupFormConfig.footerLink?.linkTo}`}
-          >
-            {signupFormConfig.footerLink?.linkText}
-          </NavLink>
-        </div>
+        {signupFormConfig.footerLink && (
+          <FormFooter
+            formattedTitle={formattedTitle}
+            footerLink={signupFormConfig.footerLink}
+          />
+        )}
       </div>
     </div>
   );
