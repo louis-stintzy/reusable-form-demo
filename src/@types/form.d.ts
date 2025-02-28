@@ -26,13 +26,7 @@ export interface FormField<T extends FieldValues>
  */
 export interface FormInputProps<T extends FieldValues>
   extends InputHTMLAttributes<HTMLInputElement> {
-  classNames: {
-    inputContainer: string;
-    label: string;
-    input: string;
-    errorContainer: string;
-    error: string;
-  };
+  formattedTitle: string;
   label: string;
   id: Path<T>;
   error?: string | null;

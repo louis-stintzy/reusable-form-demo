@@ -34,18 +34,11 @@ function SignupForm() {
     <div className="signup-form__container">
       <div className="signup-form__wrapper">
         <FormTitle formattedTitle="signup" title="Sign up" />
-        {/* <h2 className="signup-form__title">Sign up</h2> */}
         <form onSubmit={handleSubmit(onSubmit)} className="signup-form__form">
           {signupFormFields.map((field) => (
             <FormInput<RegisterCredentials>
               key={field.id}
-              classNames={{
-                inputContainer: 'signup-form__input-container',
-                label: 'signup-form__label',
-                input: 'signup-form__input',
-                errorContainer: 'signup-form__error-container',
-                error: 'signup-form__error',
-              }}
+              formattedTitle="signup"
               label={field.label}
               id={field.id}
               type={field.type}
