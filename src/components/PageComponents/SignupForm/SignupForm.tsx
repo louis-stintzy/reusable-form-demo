@@ -9,6 +9,7 @@ import FormSubmitButton from '../../Common/ReusableForm/SubComponents/FormSubmit
 import FormTitle from '../../Common/ReusableForm/SubComponents/FormTitle';
 
 import './SignupForm.style.css';
+import { formatTitle } from '../../../utils/formatTitle';
 
 /*
  * Composant SignupForm : Formulaire d'inscription
@@ -27,18 +28,24 @@ function SignupForm() {
     resolver: zodResolver(signupFormSchema),
   });
 
+  const title = 'Sign up';
+  const formattedTitle = formatTitle(title);
+
   const onSubmit: SubmitHandler<RegisterCredentials> = (data) => {
     console.log('Données du formulaire', data);
   };
   return (
-    <div className="signup-form__container">
-      <div className="signup-form__wrapper">
-        <FormTitle formattedTitle="signup" title="Sign up" />
-        <form onSubmit={handleSubmit(onSubmit)} className="signup-form__form">
+    <div className={`${formattedTitle}-form__container`}>
+      <div className={`${formattedTitle}-form__wrapper`}>
+        <FormTitle formattedTitle={formattedTitle} title={title} />
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className={`${formattedTitle}-form__form`}
+        >
           {signupFormConfig.map((field) => (
             <FormInput<RegisterCredentials>
               key={field.id}
-              formattedTitle="signup"
+              formattedTitle={formattedTitle}
               label={field.label}
               id={field.id}
               type={field.type}
@@ -50,7 +57,7 @@ function SignupForm() {
             />
           ))}
           <FormSubmitButton
-            formattedTitle="signup"
+            formattedTitle={formattedTitle}
             isLoading={false}
             buttonText={{
               loading: 'Signing up...',
@@ -58,11 +65,11 @@ function SignupForm() {
             }}
           />
         </form>
-        <div className="signup-form__link-container">
-          <p className="signup-form__link-message">
+        <div className={`${formattedTitle}-form__link-container`}>
+          <p className={`${formattedTitle}-form__link-message`}>
             Already have an account ?{' '}
           </p>
-          <NavLink className="signup-form__link" to="/login">
+          <NavLink className={`${formattedTitle}-form__link`} to="/login">
             Login now
           </NavLink>
         </div>
