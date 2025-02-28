@@ -28,7 +28,7 @@ function SignupForm() {
     resolver: zodResolver(signupFormSchema),
   });
 
-  const title = 'Sign up';
+  const title = signupFormConfig.title;
   const formattedTitle = formatTitle(title);
 
   const onSubmit: SubmitHandler<RegisterCredentials> = (data) => {
@@ -42,7 +42,7 @@ function SignupForm() {
           onSubmit={handleSubmit(onSubmit)}
           className={`${formattedTitle}-form__form`}
         >
-          {signupFormConfig.map((field) => (
+          {signupFormConfig.fields.map((field) => (
             <FormInput<RegisterCredentials>
               key={field.id}
               formattedTitle={formattedTitle}
@@ -59,18 +59,18 @@ function SignupForm() {
           <FormSubmitButton
             formattedTitle={formattedTitle}
             isLoading={false}
-            buttonText={{
-              loading: 'Signing up...',
-              default: 'Sign up',
-            }}
+            buttonText={signupFormConfig.buttonText}
           />
         </form>
         <div className={`${formattedTitle}-form__link-container`}>
           <p className={`${formattedTitle}-form__link-message`}>
-            Already have an account ?{' '}
+            {signupFormConfig.footerLink?.text}
           </p>
-          <NavLink className={`${formattedTitle}-form__link`} to="/login">
-            Login now
+          <NavLink
+            className={`${formattedTitle}-form__link`}
+            to={`${signupFormConfig.footerLink?.linkTo}`}
+          >
+            {signupFormConfig.footerLink?.linkText}
           </NavLink>
         </div>
       </div>

@@ -32,3 +32,32 @@ export interface FormInputProps<T extends FieldValues>
   error?: string | null;
   register: UseFormRegister<T>;
 }
+
+/**
+ * Interface FormConfig<T> : Définition de la structure d'un formulaire configurable.
+ *
+ * @template T - Type des données du formulaire (ex: `RegisterCredentials`)
+ * @property {string} title - Titre du formulaire.
+ * @property {Object} buttonText - Texte du bouton de soumission.
+ * @property {string} buttonText.loading - Texte affiché lorsque le formulaire est en cours de soumission.
+ * @property {string} buttonText.default - Texte affiché par défaut sur le bouton de soumission.
+ * @property {FormField<T>[]} fields - Liste des champs du formulaire, chacun défini selon `FormField<T>`.
+ * @property {Object} [footerLink] - Informations optionnelles sur le lien de redirection en bas du formulaire.
+ * @property {string} [footerLink.text] - Texte d'accompagnement du lien.
+ * @property {string} [footerLink.linkText] - Texte du lien cliquable.
+ * @property {string} [footerLink.linkTo] - URL vers laquelle redirige le lien.
+ */
+
+export interface FormConfig<T extends FieldValues> {
+  title: string;
+  buttonText: {
+    loading: string;
+    default: string;
+  };
+  fields: FormField<T>[];
+  footerLink?: {
+    text?: string;
+    linkText?: string;
+    linkTo?: string;
+  };
+}
