@@ -10,6 +10,7 @@ import FormTitle from '../../Common/ReusableForm/SubComponents/FormTitle';
 import './SignupForm.style.css';
 import { formatTitle } from '../../../utils/formatTitle';
 import FormFooter from '../../Common/ReusableForm/SubComponents/FormFooter';
+import { useEffect, useState } from 'react';
 
 /*
  * Composant SignupForm : Formulaire d'inscription
@@ -28,12 +29,54 @@ function SignupForm() {
     resolver: zodResolver(signupFormSchema),
   });
 
+  const [footerMessage, setFooterMessage] = useState<{
+    type: 'error' | 'success' | 'default';
+    content: {
+      text: string;
+      linkText: string;
+      linkTo: string;
+    };
+  } | null>(null);
+  const isloading = false;
+
+  const footerError = {
+    text: 'Email already exists,',
+    linkText: 'please login ',
+    linkTo: '/login',
+  };
+  const footerSuccess = {
+    text: 'Account created successfully',
+    linkText: 'Login now',
+    linkTo: '/login',
+  };
+
   const title = signupFormConfig.title;
   const formattedTitle = formatTitle(title);
 
   const onSubmit: SubmitHandler<RegisterCredentials> = (data) => {
     console.log('Données du formulaire', data);
+    // note : ici, on simule un appel API pour vérifier si l'email existe déjà
+    if (data.email === 'bad@mail.com') {
+      setFooterMessage({
+        type: 'error',
+        content: footerError,
+      });
+    }
+    if (data.email === 'good@mail.com') {
+      setFooterMessage({
+        type: 'success',
+        content: footerSuccess,
+      });
+    }
   };
+
+  const [animationKey, setAnimationKey] = useState(0);
+
+  useEffect(() => {
+    // Change la clé à chaque changement de message, pour forcer le re-rendu
+    setAnimationKey((prev) => prev + 1);
+  }, [footerMessage]);
+
   return (
     <div className={`${formattedTitle}-form__container`}>
       <div className={`${formattedTitle}-form__wrapper`}>
@@ -58,16 +101,23 @@ function SignupForm() {
           ))}
           <FormSubmitButton
             formattedTitle={formattedTitle}
-            isLoading={false}
+            isLoading={isloading}
             buttonText={signupFormConfig.buttonText}
           />
         </form>
-        {signupFormConfig.footerLink && (
-          <FormFooter
-            formattedTitle={formattedTitle}
-            footerLink={signupFormConfig.footerLink}
-          />
-        )}
+        <FormFooter
+          key={animationKey}
+          formattedTitle={formattedTitle}
+          type={footerMessage?.type ?? 'default'}
+          footerLink={
+            footerMessage?.content ??
+            signupFormConfig?.footerLink ?? {
+              text: '',
+              linkText: '',
+              linkTo: '',
+            }
+          }
+        />
       </div>
     </div>
   );

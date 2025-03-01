@@ -13,6 +13,7 @@ import { NavLink } from 'react-router-dom';
 
 interface FormFooterProps {
   formattedTitle: string;
+  type: 'default' | 'error' | 'success';
   footerLink: {
     text?: string;
     linkText?: string;
@@ -20,13 +21,20 @@ interface FormFooterProps {
   };
 }
 
-function FormFooter({ formattedTitle, footerLink }: FormFooterProps) {
+function FormFooter({ formattedTitle, type, footerLink }: FormFooterProps) {
   const { text, linkText, linkTo } = footerLink;
   return (
-    <div className={`${formattedTitle}-form__link-container`}>
-      {text && <p className={`${formattedTitle}-form__link-message`}>{text}</p>}
+    <div className={`${formattedTitle}-form__link-container--${type}`}>
+      {text && (
+        <p className={`${formattedTitle}-form__link-message--${type}`}>
+          {text}
+        </p>
+      )}
       {linkText && linkTo && (
-        <NavLink className={`${formattedTitle}-form__link`} to={`${linkTo}`}>
+        <NavLink
+          className={`${formattedTitle}-form__link--${type}`}
+          to={`${linkTo}`}
+        >
           {linkText}
         </NavLink>
       )}
