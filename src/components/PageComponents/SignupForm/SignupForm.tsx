@@ -11,6 +11,7 @@ import './SignupForm.style.css';
 import { formatTitle } from '../../../utils/formatTitle';
 import FormFooter from '../../Common/ReusableForm/SubComponents/FormFooter';
 import { useEffect, useState } from 'react';
+import FormBase from '../../Common/ReusableForm/SubComponents/FormBase';
 
 /*
  * Composant SignupForm : Formulaire d'inscription
@@ -37,6 +38,10 @@ function SignupForm() {
       linkTo: string;
     };
   } | null>(null);
+  const title = signupFormConfig.title;
+  const formattedTitle = formatTitle(title);
+
+  // note : Simulation de l'état de chargement, de succès et d'erreur
   const isloading = false;
 
   const footerError = {
@@ -49,9 +54,6 @@ function SignupForm() {
     linkText: 'Login now',
     linkTo: '/login',
   };
-
-  const title = signupFormConfig.title;
-  const formattedTitle = formatTitle(title);
 
   const onSubmit: SubmitHandler<RegisterCredentials> = (data) => {
     console.log('Données du formulaire', data);
@@ -81,9 +83,9 @@ function SignupForm() {
     <div className={`${formattedTitle}-form__container`}>
       <div className={`${formattedTitle}-form__wrapper`}>
         <FormTitle formattedTitle={formattedTitle} title={title} />
-        <form
+        <FormBase
+          formattedTitle={formattedTitle}
           onSubmit={handleSubmit(onSubmit)}
-          className={`${formattedTitle}-form__form`}
         >
           {signupFormConfig.fields.map((field) => (
             <FormInput<RegisterCredentials>
@@ -104,7 +106,7 @@ function SignupForm() {
             isLoading={isloading}
             buttonText={signupFormConfig.buttonText}
           />
-        </form>
+        </FormBase>
         <FormFooter
           key={animationKey}
           formattedTitle={formattedTitle}
