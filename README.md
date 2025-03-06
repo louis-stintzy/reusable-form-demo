@@ -54,7 +54,7 @@ For example :
 | **FormContainer**    | Inner wrapper                                                                | `${formattedTitle}-form__wrapper`                 | `.sign-up-form__wrapper {}`                 |
 | **FormTitle**        | Form title                                                                   | `${formattedTitle}-form__title`                   | `.sign-up-form__title {}`                   |
 | **FormBase**         | `<form>` element                                                             | `${formattedTitle}-form__form`                    | `.sign-up-form__form {}`                    |
-| **FormInput**        | Container for label & input                                                  | `${formattedTitle}-form__input-container`         | `.sign-up-form__input-wrapper {}`           |
+| **FormInput**        | Container for label & input                                                  | `${formattedTitle}-form__input-container`         | `.sign-up-form__input-container {}`         |
 | **FormInput**        | Label for input                                                              | `${formattedTitle}-form__label`                   | `.sign-up-form__label {}`                   |
 | **FormInput**        | Input field                                                                  | `${formattedTitle}-form__input`                   | `.sign-up-form__input {}`                   |
 | **FormInput**        | Container for input error message                                            | `${formattedTitle}-form__error-container`         | `.sign-up-form__error-container {}`         |
