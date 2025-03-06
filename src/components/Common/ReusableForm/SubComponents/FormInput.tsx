@@ -1,6 +1,3 @@
-import { FieldValues } from 'react-hook-form';
-import { FormInputProps } from '../../../../@types/form';
-
 /**
  * Composant FormInput : Champ de formulaire réutilisable
  * - Affiche un champ `<input>` avec un libellé `label`
@@ -19,6 +16,28 @@ import { FormInputProps } from '../../../../@types/form';
  * @param {UseFormRegister<T>} props.register - Fonction `register` de `react-hook-form`
  * @param {InputHTMLAttributes<HTMLInputElement>} props.inputProps - Toutes les autres propriétés HTML natives de l'input
  */
+
+import { FieldValues, Path, UseFormRegister } from 'react-hook-form';
+import { InputHTMLAttributes } from 'react';
+
+/**
+ * Props pour le composant FormInput (sous-composant de ReusableForm)
+ * - `T` assure que `register`, `errors` et `id` sont correctement typés en fonction du formulaire utilisé.
+ * - formattedTitle : titre du formulaire formaté pour les classNames CSS
+ * - label : texte du libellé affiché
+ * - id : clé de l'objet `T`, utilisée pour identifier l'input dans `react-hook-form`.
+ * - error : message d'erreur à afficher (optionnel).
+ * - register : méthode `register` fournie par `react-hook-form` pour enregistrer les champs de formulaire.
+ */
+
+export interface FormInputProps<T extends FieldValues>
+  extends InputHTMLAttributes<HTMLInputElement> {
+  formattedTitle: string;
+  label: string;
+  id: Path<T>;
+  error?: string | null;
+  register: UseFormRegister<T>;
+}
 
 function FormInput<T extends FieldValues>({
   formattedTitle,

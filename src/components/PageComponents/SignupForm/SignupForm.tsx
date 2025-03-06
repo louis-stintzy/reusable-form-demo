@@ -13,6 +13,7 @@ import FormFooter from '../../Common/ReusableForm/SubComponents/FormFooter';
 import { useEffect, useState } from 'react';
 import FormBase from '../../Common/ReusableForm/SubComponents/FormBase';
 import FormInputs from '../../Common/ReusableForm/SubComponents/FormInputs';
+import FormContainer from '../../Common/ReusableForm/SubComponents/FormContainer';
 
 /*
  * Composant SignupForm : Formulaire d'inscription
@@ -81,40 +82,38 @@ function SignupForm() {
   }, [footerMessage]);
 
   return (
-    <div className={`${formattedTitle}-form__container`}>
-      <div className={`${formattedTitle}-form__wrapper`}>
-        <FormTitle formattedTitle={formattedTitle} title={title} />
-        <FormBase
+    <FormContainer formattedTitle={formattedTitle}>
+      <FormTitle formattedTitle={formattedTitle} title={title} />
+      <FormBase
+        formattedTitle={formattedTitle}
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <FormInputs<RegisterCredentials>
           formattedTitle={formattedTitle}
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          <FormInputs<RegisterCredentials>
-            formattedTitle={formattedTitle}
-            fields={signupFormConfig.fields}
-            errors={errors}
-            register={register}
-          />
-          <FormSubmitButton
-            formattedTitle={formattedTitle}
-            isLoading={isloading}
-            buttonText={signupFormConfig.buttonText}
-          />
-        </FormBase>
-        <FormFooter
-          key={animationKey}
-          formattedTitle={formattedTitle}
-          type={footerMessage?.type ?? 'default'}
-          footerLink={
-            footerMessage?.content ??
-            signupFormConfig?.footerLink ?? {
-              text: '',
-              linkText: '',
-              linkTo: '',
-            }
-          }
+          fields={signupFormConfig.fields}
+          errors={errors}
+          register={register}
         />
-      </div>
-    </div>
+        <FormSubmitButton
+          formattedTitle={formattedTitle}
+          isLoading={isloading}
+          buttonText={signupFormConfig.buttonText}
+        />
+      </FormBase>
+      <FormFooter
+        key={animationKey}
+        formattedTitle={formattedTitle}
+        type={footerMessage?.type ?? 'default'}
+        footerLink={
+          footerMessage?.content ??
+          signupFormConfig?.footerLink ?? {
+            text: '',
+            linkText: '',
+            linkTo: '',
+          }
+        }
+      />
+    </FormContainer>
   );
 }
 
