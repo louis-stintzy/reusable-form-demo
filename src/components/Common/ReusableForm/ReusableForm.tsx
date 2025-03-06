@@ -1,3 +1,12 @@
+/**
+ * Composant ReusableForm : Formulaire dynamique basé sur une configuration et un schéma de validation.
+ * @template T - Type générique représentant les valeurs du formulaire (ex: `RegisterCredentials`)
+ * @param {Object} props - Les propriétés du composant
+ * @param {FormConfig<T>} props.formConfig - Configuration du formulaire (titre, champs, bouton, footer)
+ * @param {ZodSchema<T>} props.formSchema - Schéma de validation du formulaire
+ * @returns {JSX.Element} - Le formulaire généré dynamiquement
+ */
+
 import { ZodSchema } from 'zod';
 import { FormConfig } from '../../../@types/form';
 import { useForm, SubmitHandler, FieldValues } from 'react-hook-form';

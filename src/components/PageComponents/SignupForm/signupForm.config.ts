@@ -1,6 +1,3 @@
-import { RegisterCredentials } from '../../../@types/auth';
-import { FormConfig } from '../../../@types/form';
-
 /**
  * Configuration du formulaire d'inscription.
  *
@@ -8,6 +5,9 @@ import { FormConfig } from '../../../@types/form';
  * - `FormField<RegisterCredentials>` garantit que `id` correspond à une clé de `RegisterCredentials`.
  * - `footerLink` contient un lien vers la page de connexion si l'utilisateur a déjà un compte.
  */
+
+import { RegisterCredentials } from '../../../@types/auth';
+import { FormConfig } from '../../../@types/form';
 
 export const signupFormConfig: FormConfig<RegisterCredentials> = {
   title: 'Sign up',
