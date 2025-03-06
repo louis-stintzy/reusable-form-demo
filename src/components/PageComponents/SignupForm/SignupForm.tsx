@@ -3,7 +3,7 @@ import { RegisterCredentials } from '../../../@types/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { signupFormSchema } from './signupForm.schema';
 import { signupFormConfig } from './signupForm.config';
-import FormInput from '../../Common/ReusableForm/SubComponents/FormInput';
+// import FormInput from '../../Common/ReusableForm/SubComponents/FormInput';
 import FormSubmitButton from '../../Common/ReusableForm/SubComponents/FormSubmitButton';
 import FormTitle from '../../Common/ReusableForm/SubComponents/FormTitle';
 
@@ -12,6 +12,7 @@ import { formatTitle } from '../../../utils/formatTitle';
 import FormFooter from '../../Common/ReusableForm/SubComponents/FormFooter';
 import { useEffect, useState } from 'react';
 import FormBase from '../../Common/ReusableForm/SubComponents/FormBase';
+import FormInputs from '../../Common/ReusableForm/SubComponents/FormInputs';
 
 /*
  * Composant SignupForm : Formulaire d'inscription
@@ -87,20 +88,12 @@ function SignupForm() {
           formattedTitle={formattedTitle}
           onSubmit={handleSubmit(onSubmit)}
         >
-          {signupFormConfig.fields.map((field) => (
-            <FormInput<RegisterCredentials>
-              key={field.id}
-              formattedTitle={formattedTitle}
-              label={field.label}
-              id={field.id}
-              type={field.type}
-              placeholder={field.placeholder}
-              autoComplete={field.autoComplete}
-              error={errors[field.id]?.message}
-              register={register}
-              required={field.required}
-            />
-          ))}
+          <FormInputs<RegisterCredentials>
+            formattedTitle={formattedTitle}
+            fields={signupFormConfig.fields}
+            errors={errors}
+            register={register}
+          />
           <FormSubmitButton
             formattedTitle={formattedTitle}
             isLoading={isloading}
