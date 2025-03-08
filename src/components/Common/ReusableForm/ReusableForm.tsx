@@ -21,13 +21,26 @@ import FormFooter from './SubComponents/FormFooter';
 import { formatTitle } from '../../../utils/formatTitle';
 
 interface ReusableFormProps<T extends FieldValues> {
+  isLoading: boolean;
   formConfig: FormConfig<T>;
   formSchema: ZodSchema<T>;
+  footerMessage?: {
+    type: 'error' | 'success' | 'info';
+    content: {
+      text?: string;
+      linkText?: string;
+      linkTo?: string;
+    };
+  } | null;
+  action: (data: T) => void;
 }
 
 function ReusableForm<T extends FieldValues>({
+  isLoading,
   formConfig,
   formSchema,
+  footerMessage,
+  action,
 }: ReusableFormProps<T>) {
   const {
     register,
@@ -37,46 +50,46 @@ function ReusableForm<T extends FieldValues>({
     resolver: zodResolver(formSchema),
   });
 
-  const [footerMessage, setFooterMessage] = useState<{
-    type: 'error' | 'success' | 'default';
-    content: {
-      text: string;
-      linkText: string;
-      linkTo: string;
-    };
-  } | null>(null);
+  // const [footerMessage, setFooterMessage] = useState<{
+  //   type: 'error' | 'success' | 'default';
+  //   content: {
+  //     text: string;
+  //     linkText: string;
+  //     linkTo: string;
+  //   };
+  // } | null>(null);
   const title = formConfig.title;
   const formattedTitle = formatTitle(title);
 
   // note : Simulation de l'état de chargement, de succès et d'erreur
-  const isloading = false;
 
-  const footerError = {
-    text: 'Email already exists,',
-    linkText: 'please login ',
-    linkTo: '/login',
-  };
-  const footerSuccess = {
-    text: 'Account created successfully',
-    linkText: 'Login now',
-    linkTo: '/login',
-  };
+  // const footerError = {
+  //   text: 'Email already exists,',
+  //   linkText: 'please login ',
+  //   linkTo: '/login',
+  // };
+  // const footerSuccess = {
+  //   text: 'Account created successfully',
+  //   linkText: 'Login now',
+  //   linkTo: '/login',
+  // };
 
   const onSubmit: SubmitHandler<T> = (data) => {
     console.log('Données du formulaire', data);
+    action(data);
     // note : ici, on simule un appel API pour vérifier si l'email existe déjà
-    if (data.email === 'bad@mail.com') {
-      setFooterMessage({
-        type: 'error',
-        content: footerError,
-      });
-    }
-    if (data.email === 'good@mail.com') {
-      setFooterMessage({
-        type: 'success',
-        content: footerSuccess,
-      });
-    }
+    // if (data.email === 'bad@mail.com') {
+    //   setFooterMessage({
+    //     type: 'error',
+    //     content: footerError,
+    //   });
+    // }
+    // if (data.email === 'good@mail.com') {
+    //   setFooterMessage({
+    //     type: 'success',
+    //     content: footerSuccess,
+    //   });
+    // }
   };
 
   const [animationKey, setAnimationKey] = useState(0);
@@ -101,7 +114,7 @@ function ReusableForm<T extends FieldValues>({
         />
         <FormSubmitButton
           formattedTitle={formattedTitle}
-          isLoading={isloading}
+          isLoading={isLoading}
           buttonText={formConfig.buttonText}
         />
       </FormBase>

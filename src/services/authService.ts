@@ -25,6 +25,6 @@ export const loginUser = async (
         });
       }
       reject(new Error('Invalid credentials'));
-    }, 1000)
+    }, 300)
   );
 };

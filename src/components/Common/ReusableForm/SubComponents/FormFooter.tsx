@@ -13,7 +13,7 @@ import { NavLink } from 'react-router-dom';
 
 interface FormFooterProps {
   formattedTitle: string;
-  type: 'default' | 'error' | 'success';
+  type: 'default' | 'error' | 'success' | 'info';
   footerLink: {
     text?: string;
     linkText?: string;

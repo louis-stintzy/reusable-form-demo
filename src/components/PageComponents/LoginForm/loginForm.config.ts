@@ -34,8 +34,8 @@ export const loginFormConfig: FormConfig<LoginCredentials> = {
     },
   ],
   footerLink: {
-    text: 'Forgot password?',
-    linkText: 'Reset now',
-    linkTo: '/reset-password',
+    text: "Don't have an account?",
+    linkText: 'Sign up',
+    linkTo: '/signup',
   },
 };
