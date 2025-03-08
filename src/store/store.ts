@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 
-import { createAuthSlice, AuthSlice } from './authSlice';
+import { createAuthSlice, AuthSlice } from './slices/authSlice';
 
 type StoreState = AuthSlice;
 

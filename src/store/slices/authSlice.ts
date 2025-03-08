@@ -1,7 +1,7 @@
 import { StateCreator } from 'zustand';
 import type {} from '@redux-devtools/extension';
-import { LoginCredentials } from '../@types/auth';
-import { loginUser } from '../services/authService';
+import { LoginCredentials } from '../../@types/auth';
+import { loginUser } from '../../services/authService';
 
 export interface UserData {
   id: number;
@@ -14,6 +14,7 @@ export interface AuthState {
   isLoadingAuth: boolean;
   isAuthenticated: boolean;
   user: UserData | null;
+  message: { type: 'success' | 'error' | 'info'; content: string } | null;
 }
 
 export interface AuthActions {
@@ -27,6 +28,7 @@ export const initialState: AuthState = {
   isLoadingAuth: false,
   isAuthenticated: false,
   user: null,
+  message: null,
 };
 
 export const createAuthSlice: StateCreator<AuthSlice> = (set) => ({
@@ -39,13 +41,17 @@ export const createAuthSlice: StateCreator<AuthSlice> = (set) => ({
       set({
         isAuthenticated: true,
         user: user,
+        message: { type: 'success', content: 'Logged in successfully' },
       });
       // localStorage.setItem('isAuthenticated', 'true', 'user', JSON
       // .stringify({ id: 1, name: 'John Doe', email: credentials.email }));
     } catch (error) {
       console.error(error);
-      set({ isAuthenticated: false, user: null });
-      // throw new Error('Invalid credentials');
+      set({
+        isAuthenticated: false,
+        user: null,
+        message: { type: 'error', content: (error as Error).message },
+      });
     } finally {
       set({ isLoadingAuth: false });
     }
