@@ -2,6 +2,7 @@ import { StateCreator } from 'zustand';
 import type {} from '@redux-devtools/extension';
 import { LoginCredentials } from '../../@types/auth';
 import { loginUser } from '../../services/authService';
+import { FooterMessageData } from '../../@types/form';
 
 export interface UserData {
   id: number;
@@ -14,10 +15,7 @@ export interface AuthState {
   isLoadingAuth: boolean;
   isAuthenticated: boolean;
   user: UserData | null;
-  message: {
-    type: 'success' | 'error' | 'info';
-    content: { text?: string; linkText?: string; linkTo?: string };
-  } | null;
+  message: FooterMessageData | null;
 }
 
 export interface AuthActions {
@@ -46,7 +44,7 @@ export const createAuthSlice: StateCreator<AuthSlice> = (set) => ({
         user: user,
         message: {
           type: 'success',
-          content: { text: 'Logged in successfully' },
+          text: 'Logged in successfully',
         },
       });
       // localStorage.setItem('isAuthenticated', 'true', 'user', JSON
@@ -58,11 +56,9 @@ export const createAuthSlice: StateCreator<AuthSlice> = (set) => ({
         user: null,
         message: {
           type: 'error',
-          content: {
-            text: (error as Error).message,
-            linkText: 'Forgot password ? Reset now',
-            linkTo: '/reset-password',
-          },
+          text: (error as Error).message,
+          linkText: 'Forgot password ? Reset now',
+          linkTo: '/reset-password',
         },
       });
     } finally {

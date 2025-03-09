@@ -32,7 +32,7 @@ function LoginForm() {
       formConfig={loginFormConfig}
       formSchema={loginFormSchema}
       action={login}
-      footerMessage={message}
+      footerMessage={message ?? undefined}
     />
   );
 }

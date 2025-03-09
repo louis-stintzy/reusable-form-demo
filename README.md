@@ -89,7 +89,8 @@ export interface FormConfig<T extends FieldValues> {
     default: string;
   };
   fields: FormField<T>[];
-  footerLink?: {
+  footerMessage?: {
+    type: 'default' | 'error' | 'success' | 'info' | 'none';
     text?: string;
     linkText?: string;
     linkTo?: string;
@@ -137,7 +138,8 @@ export const signupFormConfig: FormConfig<RegisterCredentials> = {
       required: true,
     },
   ],
-  footerLink: {
+  footerMessage: {
+    type: 'default',
     text: 'Already have an account ?',
     linkText: 'Login now',
     linkTo: '/login',

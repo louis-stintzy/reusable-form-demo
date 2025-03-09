@@ -3,7 +3,7 @@
  *
  * - Définition du titre, des boutons et des champs.
  * - `FormField<LoginCredentials>` garantit que `id` correspond à une clé de `LoginCredentials`.
- * - `footerLink` contient un lien vers la page de réinitialisation du mot de passe.
+ * - `footerMessage` contient un lien vers la page de réinitialisation du mot de passe.
  */
 
 import { LoginCredentials } from '../../../@types/auth';
@@ -33,7 +33,8 @@ export const loginFormConfig: FormConfig<LoginCredentials> = {
       required: true,
     },
   ],
-  footerLink: {
+  footerMessage: {
+    type: 'default',
     text: "Don't have an account?",
     linkText: 'Sign up',
     linkTo: '/signup',

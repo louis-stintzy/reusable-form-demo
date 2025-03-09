@@ -2,6 +2,21 @@ import { InputHTMLAttributes } from 'react';
 import { FieldValues, Path } from 'react-hook-form';
 
 /**
+ * Interface FooterMessageData : Définition des données d'un message de pied de formulaire
+ * - `type` est le type de message (default, error, success, info)
+ * - `text` est le message
+ * - `linkText` est le texte du lien cliquable
+ * - `linkTo` est l'URL vers laquelle redirige le lien
+ */
+
+export interface FooterMessageData {
+  type: 'default' | 'error' | 'success' | 'info' | 'none';
+  text?: string;
+  linkText?: string;
+  linkTo?: string;
+}
+
+/**
  * Interface FormField : Définition générique d'un champ de formulaire
  * - `T` représente les valeurs du formulaire (ex: `RegisterCredentials`)
  * - FieldValues est une interface définie dans la librairie react-hook-form pour typer les valeurs des champs de formulaire (export type FieldValues = Record<string, any>;)
@@ -29,10 +44,7 @@ export interface FormField<T extends FieldValues>
  * @property {string} buttonText.loading - Texte affiché lorsque le formulaire est en cours de soumission.
  * @property {string} buttonText.default - Texte affiché par défaut sur le bouton de soumission.
  * @property {FormField<T>[]} fields - Liste des champs du formulaire, chacun défini selon `FormField<T>`.
- * @property {Object} [footerLink] - Informations optionnelles sur le lien de redirection en bas du formulaire.
- * @property {string} [footerLink.text] - Texte d'accompagnement du lien.
- * @property {string} [footerLink.linkText] - Texte du lien cliquable.
- * @property {string} [footerLink.linkTo] - URL vers laquelle redirige le lien.
+ * @property {FooterMessageData} [footerMessage] - Message de pied de formulaire option
  */
 
 export interface FormConfig<T extends FieldValues> {
@@ -42,9 +54,5 @@ export interface FormConfig<T extends FieldValues> {
     default: string;
   };
   fields: FormField<T>[];
-  footerLink?: {
-    text?: string;
-    linkText?: string;
-    linkTo?: string;
-  };
+  footerMessage?: FooterMessageData;
 }

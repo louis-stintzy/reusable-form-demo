@@ -2,13 +2,16 @@
  * Composant ReusableForm : Formulaire dynamique basé sur une configuration et un schéma de validation.
  * @template T - Type générique représentant les valeurs du formulaire (ex: `RegisterCredentials`)
  * @param {Object} props - Les propriétés du composant
+ * @param {boolean} props.isLoading - État de chargement du formulaire
  * @param {FormConfig<T>} props.formConfig - Configuration du formulaire (titre, champs, bouton, footer)
  * @param {ZodSchema<T>} props.formSchema - Schéma de validation du formulaire
+ * @param {FooterMessageData} [props.footerMessage] - Message de pied de formulaire optionnel
+ * @param {(data: T) => void} props.action - Fonction à exécuter lors de la soumission du formulaire
  * @returns {JSX.Element} - Le formulaire généré dynamiquement
  */
 
 import { ZodSchema } from 'zod';
-import { FormConfig } from '../../../@types/form';
+import { FooterMessageData, FormConfig } from '../../../@types/form';
 import { useForm, SubmitHandler, FieldValues } from 'react-hook-form';
 import { useEffect, useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -24,14 +27,7 @@ interface ReusableFormProps<T extends FieldValues> {
   isLoading: boolean;
   formConfig: FormConfig<T>;
   formSchema: ZodSchema<T>;
-  footerMessage?: {
-    type: 'error' | 'success' | 'info';
-    content: {
-      text?: string;
-      linkText?: string;
-      linkTo?: string;
-    };
-  } | null;
+  footerMessage?: FooterMessageData;
   action: (data: T) => void;
 }
 
@@ -121,13 +117,13 @@ function ReusableForm<T extends FieldValues>({
       <FormFooter
         key={animationKey}
         formattedTitle={formattedTitle}
-        type={footerMessage?.type ?? 'default'}
-        footerLink={
-          footerMessage?.content ??
-          formConfig?.footerLink ?? {
-            text: '',
-            linkText: '',
-            linkTo: '',
+        footerMessage={
+          footerMessage ??
+          formConfig.footerMessage ?? {
+            type: 'none',
+            text: undefined,
+            linkText: undefined,
+            linkTo: undefined,
           }
         }
       />
