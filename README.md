@@ -11,15 +11,69 @@ This component is a reusable and configurable standard form using :
 
 The ReusableForm is based on :
 
-- A configuration file (formConfig), defining the fields, title, button texts and footer
-- A Zod validation schema (formSchema), guaranteeing that the data entered is correct
-- Error handling based on react-hook-form and Zod
+- A `configuration file`, formConfig, defining the fields, title, button texts and footer
+- A Zod `validation schema`, formSchema, guaranteeing that the data entered is correct
+- `Error handling` based on `react-hook-form` and `Zod`
+- `Dynamic submission handling` through the action function
+- Optional `footer messages` to provide additional guidance or feedback to users
 
-| **Prop**     | **Expected Type**                                              | **Description**                                                                      |
-| ------------ | -------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| `T`          | `FieldValues` (e.g, `LoginCredentials`, `RegisterCredentials`) | Type of form data (submitted values)                                                 |
-| `formConfig` | `FormConfig<T>`                                                | Form configuration : title, fields (labels, type, placeholder...), button texts etc. |
-| `formSchema` | `ZodSchema<T>`                                                 | `Zod` schema for field validation.                                                   |
+| **Prop**        | **Expected Type**                                              | **Description**                                                                      |
+| --------------- | -------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| `T`             | `FieldValues` (e.g, `LoginCredentials`, `RegisterCredentials`) | Type of form data (submitted values)                                                 |
+| `formConfig`    | `FormConfig<T>`                                                | Form configuration : title, fields (labels, type, placeholder...), button texts etc. |
+| `formSchema`    | `ZodSchema<T>`                                                 | `Zod` schema for field validation.                                                   |
+| `isLoading`     | `boolean`                                                      | Displays a loading state on the submit button                                        |
+| `footerMessage` | `FooterMessageData` _(optional)_                               | Message displayed at the bottom of the form, with an optional link                   |
+| `action`        | `(data: T) => void`                                            | Function called on form submission                                                   |
+
+## 💬 Managing the `FormFooter`
+
+The `FormFooter` is an optional section of the `ReusableForm` that displays contextual messages (e.g., errors, success, or additional information) at the bottom of the form.
+
+### Message types
+
+- `default`
+- `info`
+- `success`
+- `error`
+- `none`
+
+### How it works
+
+- You can define footerMessage as follows :
+
+  ```ts
+  footerMessage: {
+      type: 'default',
+      text: "Don't have an account?",
+      linkText: 'Sign up',
+      linkTo: '/signup',
+  },
+  ```
+
+- If you want to **reserve space** for a future message (a possible error or other information without defining a default message), you can set:
+
+  ```ts
+  footerMessage: {
+    type: 'default',
+    text: '',
+    linkText: '',
+    linkTo: '',
+  }
+  ```
+
+- If you want to completely hide the footer (without reserving any space), set the type to 'none' as follows::
+
+  ```ts
+   footerMessage: {
+     type: 'none',
+     text: undefined,
+     linkText: undefined,
+     linkTo: undefined,
+   }
+  ```
+
+With type 'none', `FormFooter` is explicitly hidden via `return null`.
 
 ## 🎨 Customizing styles
 
