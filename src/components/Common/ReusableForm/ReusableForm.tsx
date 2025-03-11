@@ -111,7 +111,7 @@ function ReusableForm<T extends FieldValues>({
         <FormSubmitButton
           formattedTitle={formattedTitle}
           isLoading={isLoading}
-          buttonText={formConfig.buttonText}
+          buttonContent={formConfig.submitButton}
         />
       </FormBase>
       <FormFooter

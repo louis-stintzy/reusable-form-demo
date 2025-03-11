@@ -16,6 +16,11 @@ export interface FooterMessageData {
   linkTo?: string;
 }
 
+export interface ButtonContentData {
+  type: 'text' | 'image';
+  content: string;
+}
+
 /**
  * Interface FormField : Définition générique d'un champ de formulaire
  * - `T` représente les valeurs du formulaire (ex: `RegisterCredentials`)
@@ -49,10 +54,10 @@ export interface FormField<T extends FieldValues>
 
 export interface FormConfig<T extends FieldValues> {
   title: string;
-  buttonText: {
-    loading: string;
-    default: string;
-  };
   fields: FormField<T>[];
+  submitButton: {
+    loading: ButtonContentData;
+    default: ButtonContentData;
+  };
   footerMessage?: FooterMessageData;
 }

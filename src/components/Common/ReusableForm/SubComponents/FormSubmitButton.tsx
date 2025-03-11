@@ -13,20 +13,42 @@
  * @param {string} props.buttonText.default - Texte affiché lorsque le formulaire est prêt à être soumis
  */
 
+import { ButtonContentData } from '../../../../@types/form';
+
 interface FormSubmitButtonProps {
   formattedTitle: string;
   isLoading: boolean;
-  buttonText: {
-    loading: string;
-    default: string;
+  buttonContent: {
+    loading: ButtonContentData;
+    default: ButtonContentData;
   };
 }
 
 function FormSubmitButton({
   formattedTitle,
   isLoading,
-  buttonText,
+  buttonContent,
 }: FormSubmitButtonProps) {
+  const buttonDisplay = isLoading ? (
+    buttonContent.loading.type === 'image' ? (
+      <img
+        src={buttonContent.loading.content}
+        alt="Loading..."
+        className={`${formattedTitle}-form__button-loader`}
+      />
+    ) : (
+      buttonContent.loading.content
+    )
+  ) : buttonContent.default.type === 'image' ? (
+    <img
+      src={buttonContent.default.content}
+      alt="Submit"
+      className={`${formattedTitle}-form__button-icon`}
+    />
+  ) : (
+    buttonContent.default.content
+  );
+
   return (
     <div className={`${formattedTitle}-form__button-container`}>
       <div className={`${formattedTitle}-form__button-wrapper`}>
@@ -35,7 +57,7 @@ function FormSubmitButton({
           className={`${formattedTitle}-form__button`}
           disabled={isLoading}
         >
-          {isLoading ? buttonText.loading : buttonText.default}
+          {buttonDisplay}
         </button>
       </div>
     </div>

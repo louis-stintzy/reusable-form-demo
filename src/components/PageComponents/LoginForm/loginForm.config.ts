@@ -8,13 +8,10 @@
 
 import { LoginCredentials } from '../../../@types/auth';
 import { FormConfig } from '../../../@types/form';
+import loader from '../../../assets/loader-circle.svg';
 
 export const loginFormConfig: FormConfig<LoginCredentials> = {
   title: 'Login',
-  buttonText: {
-    loading: 'Logging in...',
-    default: 'Log in',
-  },
   fields: [
     {
       label: 'ENTER EMAIL',
@@ -33,6 +30,16 @@ export const loginFormConfig: FormConfig<LoginCredentials> = {
       required: true,
     },
   ],
+  submitButton: {
+    loading: {
+      type: 'image',
+      content: loader,
+    },
+    default: {
+      type: 'text',
+      content: 'Log in',
+    },
+  },
   footerMessage: {
     type: 'default',
     text: "Don't have an account?",

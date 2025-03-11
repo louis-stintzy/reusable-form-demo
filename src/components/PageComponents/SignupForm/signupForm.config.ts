@@ -8,13 +8,10 @@
 
 import { RegisterCredentials } from '../../../@types/auth';
 import { FormConfig } from '../../../@types/form';
+import loader from '../../../assets/loader-circle.svg';
 
 export const signupFormConfig: FormConfig<RegisterCredentials> = {
   title: 'Sign up',
-  buttonText: {
-    loading: 'Signing up...',
-    default: 'Sign up',
-  },
   fields: [
     {
       label: 'ENTER NAME',
@@ -48,6 +45,16 @@ export const signupFormConfig: FormConfig<RegisterCredentials> = {
       required: true,
     },
   ],
+  submitButton: {
+    loading: {
+      type: 'image',
+      content: loader,
+    },
+    default: {
+      type: 'text',
+      content: 'Sign up',
+    },
+  },
   footerMessage: {
     type: 'default',
     text: 'Already have an account ?',
