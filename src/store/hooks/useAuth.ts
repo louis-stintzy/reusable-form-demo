@@ -8,5 +8,6 @@ export const useAuth = () => {
     message: useStore((state) => state.message),
     login: useStore((state) => state.login),
     logout: useStore((state) => state.logout),
+    resetMessage: useStore((state) => state.resetMessage),
   };
 };

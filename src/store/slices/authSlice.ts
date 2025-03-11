@@ -21,6 +21,7 @@ export interface AuthState {
 export interface AuthActions {
   login: (credentials: LoginCredentials) => Promise<void>;
   logout: () => void;
+  resetMessage: () => void;
 }
 
 export interface AuthSlice extends AuthState, AuthActions {}
@@ -42,9 +43,12 @@ export const createAuthSlice: StateCreator<AuthSlice> = (set) => ({
       set({
         isAuthenticated: true,
         user: user,
+        // message inutile car redirection vers le dashboard (au cas où...)
         message: {
           type: 'success',
           text: 'Logged in successfully',
+          linkText: 'Go to dashboard',
+          linkTo: '/dashboard',
         },
       });
       // localStorage.setItem('isAuthenticated', 'true', 'user', JSON
@@ -71,4 +75,6 @@ export const createAuthSlice: StateCreator<AuthSlice> = (set) => ({
     set({ isAuthenticated: false, user: null });
     // localStorage.removeItem('isAuthenticated', 'user');
   },
+
+  resetMessage: () => set({ message: null }),
 });

@@ -14,17 +14,19 @@ import { loginFormConfig } from './loginForm.config';
 import { loginFormSchema } from './loginForm.schema';
 
 import './LoginForm.style.css';
+import { useNavigate } from 'react-router-dom';
 
 function LoginForm() {
-  const { isLoading, isAuthenticated, message, login } = useAuth();
-
-  // todo : effacer le message si on quitte la page
+  const { isLoading, isAuthenticated, message, login, resetMessage } =
+    useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isAuthenticated) {
-      console.log('User is authenticated');
+      void navigate('/dashboard');
     }
-  }, [isAuthenticated]);
+    return () => resetMessage();
+  }, [isAuthenticated, navigate, resetMessage]);
 
   return (
     <ReusableForm<LoginCredentials>
