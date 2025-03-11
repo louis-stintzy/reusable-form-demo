@@ -1,9 +1,11 @@
 /**
  * Configuration du formulaire de connexion.
  *
- * - Définition du titre, des boutons et des champs.
- * - `FormField<LoginCredentials>` garantit que `id` correspond à une clé de `LoginCredentials`.
- * - `footerMessage` contient un lien vers la page de réinitialisation du mot de passe.
+ * - Définition du titre, des champs et du bouton de soumission.
+ * - `fields` contient les champs `email` et `password`.
+ * - `submitButton` contient le texte du bouton de soumission et l'icône de chargement.
+ * - `FormConfig<LoginCredentials>` garantit que `id` correspond à une clé de `LoginCredentials`.
+ * - `footerMessage` contient un lien vers la page de création de compte.
  */
 
 import { LoginCredentials } from '../../../@types/auth';

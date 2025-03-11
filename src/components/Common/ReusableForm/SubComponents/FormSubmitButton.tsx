@@ -8,9 +8,9 @@
  * @param {Object} props - Les propriétés du composant
  * @param {string} props.formattedTitle - Titre du formulaire formaté pour les classNames CSS
  * @param {boolean} props.isLoading - Indique si le formulaire est en cours de soumission
- * @param {Object} props.buttonText - Contient les textes à afficher sur le bouton
- * @param {string} props.buttonText.loading - Texte affiché lorsque la soumission est en cours
- * @param {string} props.buttonText.default - Texte affiché lorsque le formulaire est prêt à être soumis
+ * @param {Object} props.buttonContent - Contient les textes/images à afficher sur le bouton
+ * @param {string} props.buttonContent.loading - Texte/image affiché(e) lorsque la soumission est en cours
+ * @param {string} props.buttonContent.default - Texte/image affichée lorsque le formulaire est prêt à être soumis
  */
 
 import { ButtonContentData } from '../../../../@types/form';
@@ -34,7 +34,7 @@ function FormSubmitButton({
       <img
         src={buttonContent.loading.content}
         alt="Loading..."
-        className={`${formattedTitle}-form__button-loader`}
+        className={`${formattedTitle}-form__button-icon--loading`}
       />
     ) : (
       buttonContent.loading.content
@@ -42,8 +42,8 @@ function FormSubmitButton({
   ) : buttonContent.default.type === 'image' ? (
     <img
       src={buttonContent.default.content}
-      alt="Submit"
-      className={`${formattedTitle}-form__button-icon`}
+      alt="Submit button"
+      className={`${formattedTitle}-form__button-icon--default`}
     />
   ) : (
     buttonContent.default.content

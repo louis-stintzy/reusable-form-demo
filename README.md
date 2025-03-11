@@ -26,6 +26,39 @@ The ReusableForm is based on :
 | `footerMessage` | `FooterMessageData` _(optional)_                               | Message displayed at the bottom of the form, with an optional link                   |
 | `action`        | `(data: T) => void`                                            | Function called on form submission                                                   |
 
+## ✅ Managing the `Submit Button`
+
+The `submitButton` can dynamically display either text or an image.
+
+### How to configure the submit button
+
+In the form configuration, define the `submitButton` property as follows:
+
+```ts
+import loader from '../../../assets/loader-circle.svg';
+
+submitButton: {
+  loading: {
+    type: 'image',
+    content: loader,
+  },
+  default: {
+    type: 'text',
+    content: 'Log in',
+  },
+};
+```
+
+You can specify:
+
+- type: **text** → A text label
+- type: **image** → An image (local file or URL)
+
+How does it behave ?
+
+- When **isLoading = true**, the loading version of the button will be displayed.
+- When **isLoading = false**, the default version of the button will be displayed.
+
 ## 💬 Managing the `FormFooter`
 
 The `FormFooter` is an optional section of the `ReusableForm` that displays contextual messages (e.g., errors, success, or additional information) at the bottom of the form.
@@ -116,6 +149,8 @@ For example :
 | **FormSubmitButton** | Container for submit button                                                  | `${formattedTitle}-form__button-container`        | `.sign-up-form__button-container {}`        |
 | **FormSubmitButton** | Wrapper for submit button                                                    | `${formattedTitle}-form__button-wrapper`          | `.sign-up-form__button-wrapper {}`          |
 | **FormSubmitButton** | Submit button                                                                | `${formattedTitle}-form__button`                  | `.sign-up-form__button {}`                  |
+| **FormSubmitButton** | Button icon (when type is image, default state)                              | `${formattedTitle}-form__button-icon--default`    | `.sign-up-form__button-icon--default {}`    |
+| **FormSubmitButton** | Button icon (when type is image, loading state)                              | `${formattedTitle}-form__button-icon--default`    | `.sign-up-form__button-icon--loading {}`    |
 | **FormFooter**       | Container for footer (optional)                                              | `${formattedTitle}-form__link-container--${type}` | `.sign-up-form__link-container--default {}` |
 | **FormFooter**       | Message (optional, can define a message type: default, success, error, etc.) | `${formattedTitle}-form__link-message--${type}`   | `.sign-up-form__link-message--default {}`   |
 | **FormFooter**       | Link available (optionnal)                                                   | `${formattedTitle}-form__link--${type}`           | `.sign-up-form__link--default {}`           |
@@ -136,29 +171,32 @@ export interface RegisterCredentials {
 ### Defining form configuration
 
 ```ts
+export interface ButtonContentData {
+  type: 'text' | 'image';
+  content: string;
+}
+
+export interface FooterMessageData {
+  type: 'default' | 'error' | 'success' | 'info' | 'none';
+  text?: string;
+  linkText?: string;
+  linkTo?: string;
+}
+
 export interface FormConfig<T extends FieldValues> {
   title: string;
-  buttonText: {
-    loading: string;
-    default: string;
-  };
   fields: FormField<T>[];
-  footerMessage?: {
-    type: 'default' | 'error' | 'success' | 'info' | 'none';
-    text?: string;
-    linkText?: string;
-    linkTo?: string;
+  submitButton: {
+    loading: ButtonContentData;
+    default: ButtonContentData;
   };
+  footerMessage?: FooterMessageData;
 }
 ```
 
 ```ts
 export const signupFormConfig: FormConfig<RegisterCredentials> = {
   title: 'Sign up',
-  buttonText: {
-    loading: 'Signing up...',
-    default: 'Sign up',
-  },
   fields: [
     {
       label: 'ENTER NAME',
@@ -192,6 +230,16 @@ export const signupFormConfig: FormConfig<RegisterCredentials> = {
       required: true,
     },
   ],
+  submitButton: {
+    loading: {
+      type: 'image',
+      content: loader,
+    },
+    default: {
+      type: 'text',
+      content: 'Sign up',
+    },
+  },
   footerMessage: {
     type: 'default',
     text: 'Already have an account ?',
@@ -270,6 +318,6 @@ export default SignupForm;
 
 - **Tailwind CSS**
 
-- **State Management (Store)**
-
 - **Backend Integration**
+
+- **Form generator**

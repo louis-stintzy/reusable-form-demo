@@ -2,6 +2,17 @@ import { InputHTMLAttributes } from 'react';
 import { FieldValues, Path } from 'react-hook-form';
 
 /**
+ * Interface ButtonContentData : Définition du contenu du bouton de soumission
+ * - `type` est le type de contenu (text, image)
+ * - `content` est le texte ou l'URL de l'image
+ */
+
+export interface ButtonContentData {
+  type: 'text' | 'image';
+  content: string;
+}
+
+/**
  * Interface FooterMessageData : Définition des données d'un message de pied de formulaire
  * - `type` est le type de message (default, error, success, info)
  * - `text` est le message
@@ -14,11 +25,6 @@ export interface FooterMessageData {
   text?: string;
   linkText?: string;
   linkTo?: string;
-}
-
-export interface ButtonContentData {
-  type: 'text' | 'image';
-  content: string;
 }
 
 /**
@@ -34,6 +40,7 @@ export interface ButtonContentData {
  * @property {string} label - Libellé du champ de formulaire
  * @property {Path<T>} id - Clé de l'objet `T`, utilisée pour identifier l'input dans `react-hook-form`
  */
+
 export interface FormField<T extends FieldValues>
   extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
@@ -45,10 +52,10 @@ export interface FormField<T extends FieldValues>
  *
  * @template T - Type des données du formulaire (ex: `RegisterCredentials`)
  * @property {string} title - Titre du formulaire.
- * @property {Object} buttonText - Texte du bouton de soumission.
- * @property {string} buttonText.loading - Texte affiché lorsque le formulaire est en cours de soumission.
- * @property {string} buttonText.default - Texte affiché par défaut sur le bouton de soumission.
  * @property {FormField<T>[]} fields - Liste des champs du formulaire, chacun défini selon `FormField<T>`.
+ * @property {Object} submitButton - Contient le contenu du bouton de soumission.
+ * @property {ButtonContentData} submitButton.loading - Texte ou image à afficher pendant le chargement.
+ * @property {ButtonContentData} submitButton.default - Texte ou image à afficher par défaut.
  * @property {FooterMessageData} [footerMessage] - Message de pied de formulaire option
  */
 
