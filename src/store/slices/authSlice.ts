@@ -19,6 +19,7 @@ export interface AuthState {
 }
 
 export interface AuthActions {
+  verifyToken: () => Promise<boolean>;
   login: (credentials: LoginCredentials) => Promise<void>;
   logout: () => void;
   resetMessage: () => void;
@@ -35,6 +36,29 @@ export const initialState: AuthState = {
 
 export const createAuthSlice: StateCreator<AuthSlice> = (set) => ({
   ...initialState,
+  verifyToken: async () => {
+    // Simulate API call
+    try {
+      set({ isLoadingAuth: true });
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const tokenIsValid = true; // todo : await verifyToken();
+      if (tokenIsValid) {
+        set({ isAuthenticated: true }); // Mise à jour correcte
+      } else {
+        set({ isAuthenticated: false, user: null });
+      }
+      return tokenIsValid;
+    } catch (error) {
+      console.error(error);
+      set({
+        isAuthenticated: false,
+        user: null,
+      });
+      return false;
+    } finally {
+      set({ isLoadingAuth: false });
+    }
+  },
   login: async (credentials) => {
     // Simulate API call
     try {
