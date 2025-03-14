@@ -54,6 +54,7 @@ function FormInput<T extends FieldValues>({
         {label}
       </label>
       <input
+        id={id}
         {...register(id, {
           required: required,
         })}

@@ -7,6 +7,7 @@ import Dashboard from '../pages/Dashboard/Dashboard';
 import NotFound from '../pages/NotFound/NotFound';
 import ResetPassword from '../pages/ResetPassword/ResetPassword';
 import ProtectedRoute from './ProtectedRoute';
+import ProfileDemo from '../pages/Demo/ProfileDemo/ProfileDemo';
 
 export const routerConfig = [
   {
@@ -36,6 +37,31 @@ export const routerConfig = [
             <Dashboard />
           </ProtectedRoute>
         ),
+      },
+      {
+        path: 'demo',
+        children: [
+          {
+            path: 'profile',
+            element: <ProfileDemo />,
+          },
+          {
+            path: 'newletter',
+            element: <div>Newletter</div>,
+          },
+          {
+            path: 'booking',
+            element: <div>Booking</div>,
+          },
+          {
+            path: 'settings',
+            element: <div>Settings</div>,
+          },
+          {
+            path: 'search',
+            element: <div>Search</div>,
+          },
+        ],
       },
       {
         path: '*',
