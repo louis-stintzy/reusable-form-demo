@@ -78,6 +78,38 @@
   color: #555;
 }
 
+/* Switch */
+.flight-reservation-form__checkbox-switch {
+  appearance: none;
+  width: 40px;
+  height: 20px;
+  background-color: #ddd;
+  border-radius: 20px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.flight-reservation-form__checkbox-switch::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+
+.flight-reservation-form__checkbox-switch:checked {
+  background-color: #3b82f6;
+}
+
+.flight-reservation-form__checkbox-switch:checked::before {
+  transform: translateX(20px);
+}
+
 /* Responsive adjustments */
 @media (max-width: 640px) {
   .flight-reservation-form__form {

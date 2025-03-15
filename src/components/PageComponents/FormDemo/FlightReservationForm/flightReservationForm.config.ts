@@ -1,6 +1,7 @@
 import { FlightReservationCredentials } from '../../../../@types/demo';
 import { FormConfig } from '../../../../@types/form';
 import loader from '../../../../assets/loader-circle.svg';
+import { travelClasses, tripTypes } from './fligthReservationForm.constant';
 
 export const flightReservationFormConfig: FormConfig<FlightReservationCredentials> =
   {
@@ -10,6 +11,7 @@ export const flightReservationFormConfig: FormConfig<FlightReservationCredential
         label: 'Type de voyage',
         id: 'tripType',
         type: 'select',
+        options: tripTypes,
         required: true,
       },
       {
@@ -30,6 +32,7 @@ export const flightReservationFormConfig: FormConfig<FlightReservationCredential
         label: 'Date de départ',
         id: 'departureDate',
         type: 'date',
+        min: new Date().toISOString().split('T')[0],
         required: true,
       },
       {
@@ -55,12 +58,13 @@ export const flightReservationFormConfig: FormConfig<FlightReservationCredential
         label: 'Classe de voyage',
         id: 'travelClass',
         type: 'select',
+        options: travelClasses,
         required: true,
       },
       {
         label: "Je veux réserver avec bluebiz ou un accord d'entreprise",
         id: 'useBluebiz',
-        type: 'checkbox',
+        type: 'switch',
       },
     ],
     submitButton: {

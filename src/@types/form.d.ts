@@ -34,17 +34,19 @@ export interface FooterMessageData {
  * - `label` est le texte du libellé affiché.
  * - `id` est une clé de `T`, typée avec `Path<T>`
  * -`Path<T>` est utilisé pour typer l'id d'un champ de formulaire comme une clé de l'interface T (chemin "T.clé" similaire à "keyof T"))
- * - On étend `InputHTMLAttributes<HTMLInputElement>` pour inclure toutes les propriétés natives des `<input>`(ex: type, placeholder, etc. pas besoin de les redéfinir ici)
+ * - On étend `InputHTMLAttributes<HTMLInputElement | HTMLSelectElement>` pour inclure toutes les propriétés natives des `<input>`(ex: type, placeholder, etc. pas besoin de les redéfinir ici) ou des `<select>` (ex: options)
  *
  * @template T - Type générique représentant les valeurs du formulaire (ex: `RegisterCredentials`)
  * @property {string} label - Libellé du champ de formulaire
  * @property {Path<T>} id - Clé de l'objet `T`, utilisée pour identifier l'input dans `react-hook-form`
+ * @property {Object[]} [options] - Options pour un champ de type `select`
  */
 
 export interface FormField<T extends FieldValues>
-  extends InputHTMLAttributes<HTMLInputElement> {
+  extends InputHTMLAttributes<HTMLInputElement | HTMLSelectElement> {
   label: string;
   id: Path<T>;
+  options?: { value: string; label: string }[];
 }
 
 /**

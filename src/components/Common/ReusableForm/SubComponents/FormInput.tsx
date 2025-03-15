@@ -21,7 +21,7 @@ import { FieldValues, Path, UseFormRegister } from 'react-hook-form';
 import { InputHTMLAttributes } from 'react';
 
 /**
- * Props pour le composant FormInput (sous-composant de ReusableForm)
+ * Props pour le composant FormInput (utilisé par le composant `FormInputs`, sous-composant de `ReusableForm`)
  * - `T` assure que `register`, `errors` et `id` sont correctement typés en fonction du formulaire utilisé.
  * - formattedTitle : titre du formulaire formaté pour les classNames CSS
  * - label : texte du libellé affiché
@@ -31,10 +31,11 @@ import { InputHTMLAttributes } from 'react';
  */
 
 export interface FormInputProps<T extends FieldValues>
-  extends InputHTMLAttributes<HTMLInputElement> {
+  extends InputHTMLAttributes<HTMLInputElement | HTMLSelectElement> {
   formattedTitle: string;
   label: string;
   id: Path<T>;
+  options?: { value: string; label: string }[];
   error?: string | null;
   register: UseFormRegister<T>;
 }
@@ -43,6 +44,8 @@ function FormInput<T extends FieldValues>({
   formattedTitle,
   label,
   id,
+  type,
+  options,
   required,
   error,
   register,
@@ -53,14 +56,43 @@ function FormInput<T extends FieldValues>({
       <label htmlFor={id} className={`${formattedTitle}-form__label`}>
         {label}
       </label>
-      <input
-        id={id}
-        {...register(id, {
-          required: required,
-        })}
-        {...inputProps}
-        className={`${formattedTitle}-form__input`}
-      />
+
+      {type === 'select' ? (
+        <select
+          id={id}
+          {...register(id, {
+            required: required,
+          })}
+          {...inputProps}
+          className={`${formattedTitle}-form__input`}
+        >
+          {options?.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+      ) : type === 'switch' ? (
+        <input
+          id={id}
+          type="checkbox"
+          {...register(id)}
+          className={`${formattedTitle}-form__checkbox-switch`}
+          {...inputProps}
+        />
+      ) : (
+        <input
+          id={id}
+          type={type}
+          {...register(id, {
+            required: required ? 'Ce champ est requis.' : false, // Todo: Fix this
+            valueAsNumber: type === 'number',
+          })}
+          {...inputProps}
+          className={`${formattedTitle}-form__input`}
+        />
+      )}
+
       <div className={`${formattedTitle}-form__error-container`}>
         {error && <p className={`${formattedTitle}-form__error`}>{error}</p>}
       </div>
