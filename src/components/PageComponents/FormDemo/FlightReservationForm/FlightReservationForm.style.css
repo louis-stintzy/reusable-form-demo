@@ -1,0 +1,90 @@
+.flight-reservation-form__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url('/assets/background-flight.jpg') center/cover no-repeat;
+}
+
+.flight-reservation-form__wrapper {
+  width: 100%;
+  max-width: 800px;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+.flight-reservation-form__title {
+  font-size: 1.8rem;
+  color: #002157;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.flight-reservation-form__form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.flight-reservation-form__input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.flight-reservation-form__label {
+  font-size: 0.9rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.flight-reservation-form__input,
+.flight-reservation-form__select {
+  padding: 0.6rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.flight-reservation-form__input[type='checkbox'] {
+  width: 1rem;
+  height: 1rem;
+  align-self: flex-start;
+}
+
+.flight-reservation-form__button-container {
+  grid-column: span 2;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.flight-reservation-form__button {
+  padding: 0.8rem 1.5rem;
+  background-color: #002157;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.flight-reservation-form__button:hover {
+  background-color: #0048ba;
+}
+
+.flight-reservation-form__link-container--info {
+  grid-column: span 2;
+  text-align: center;
+  margin-top: 1rem;
+  color: #555;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .flight-reservation-form__form {
+    grid-template-columns: 1fr;
+  }
+
+  .flight-reservation-form__button-container {
+    justify-content: center;
+  }
+}

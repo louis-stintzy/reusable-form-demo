@@ -7,7 +7,8 @@ import Dashboard from '../pages/Dashboard/Dashboard';
 import NotFound from '../pages/NotFound/NotFound';
 import ResetPassword from '../pages/ResetPassword/ResetPassword';
 import ProtectedRoute from './ProtectedRoute';
-import ProfileDemo from '../pages/Demo/ProfileDemo/ProfileDemo';
+import UserProfile from '../pages/Demo/UserProfile/UserProfile';
+import FlightReservation from '../pages/Demo/FlightReservation/FlightReservation';
 
 export const routerConfig = [
   {
@@ -42,16 +43,16 @@ export const routerConfig = [
         path: 'demo',
         children: [
           {
-            path: 'profile',
-            element: <ProfileDemo />,
+            path: 'user-profile',
+            element: <UserProfile />,
           },
           {
             path: 'newletter',
             element: <div>Newletter</div>,
           },
           {
-            path: 'booking',
-            element: <div>Booking</div>,
+            path: 'flight-reservation',
+            element: <FlightReservation />,
           },
           {
             path: 'settings',

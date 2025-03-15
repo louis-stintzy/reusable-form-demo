@@ -1,9 +1,9 @@
 import { ProfileCredentials } from '../../../../@types/demo';
 import ReusableForm from '../../../Common/ReusableForm/ReusableForm';
-import { profileFormConfig } from './profileFormDemo.config';
-import { profileFormSchema } from './profileFormDemo.schema';
+import { userProfileFormConfig } from './userProfileForm.config';
+import { userProfileFormSchema } from './userProfileForm.schema';
 
-import './profileFormDemo.style.css';
+import './UserProfileForm.style.css';
 
 function UserProfileForm() {
   const handleProfileSubmit = (data: ProfileCredentials) => {
@@ -13,8 +13,8 @@ function UserProfileForm() {
   return (
     <ReusableForm<ProfileCredentials>
       isLoading={false}
-      formConfig={profileFormConfig}
-      formSchema={profileFormSchema}
+      formConfig={userProfileFormConfig}
+      formSchema={userProfileFormSchema}
       action={handleProfileSubmit}
     />
   );

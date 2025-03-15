@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const profileFormSchema = z.object({
+export const userProfileFormSchema = z.object({
   username: z.string().min(3, 'Username must be at least 3 characters'),
   email: z.string().email('Enter a valid email address'),
   birthDate: z

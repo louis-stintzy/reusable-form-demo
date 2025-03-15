@@ -2,7 +2,7 @@ import { FormConfig } from '../../../../@types/form';
 import loader from '../../../../assets/loader-circle.svg';
 import { ProfileCredentials } from '../../../../@types/demo';
 
-export const profileFormConfig: FormConfig<ProfileCredentials> = {
+export const userProfileFormConfig: FormConfig<ProfileCredentials> = {
   title: 'User Profile',
   fields: [
     {
