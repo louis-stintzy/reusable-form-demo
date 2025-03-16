@@ -90,13 +90,13 @@ export const flightReservationFormConfig: FormConfig<FlightReservationCredential
           },
         },
         // Essai : désactive les enfants si les adultes sont à 0
-        // {
-        //   field: 'children',
-        //   condition: {
-        //     field: 'adults',
-        //     value: 0,
-        //   },
-        // },
+        {
+          field: 'children',
+          condition: {
+            field: 'adults',
+            value: 0,
+          },
+        },
       ],
     },
     submitButton: {
