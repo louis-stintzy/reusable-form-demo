@@ -23,6 +23,7 @@ export const flightReservationFormConfig: FormConfig<FlightReservationCredential
         id: 'departureAirport',
         type: 'select',
         options: airports,
+        defaultValue: 'CDG',
         placeholder: 'Ville ou aéroport',
         // required: true,
       },
@@ -31,6 +32,7 @@ export const flightReservationFormConfig: FormConfig<FlightReservationCredential
         id: 'arrivalAirport',
         type: 'select',
         options: airports,
+        defaultValue: 'NCE',
         placeholder: 'Ville ou aéroport',
         // required: true,
       },
@@ -78,6 +80,25 @@ export const flightReservationFormConfig: FormConfig<FlightReservationCredential
         type: 'switch',
       },
     ],
+    options: {
+      fieldsDesactivation: [
+        {
+          field: 'returnDate',
+          condition: {
+            field: 'tripType',
+            value: 'OneWay',
+          },
+        },
+        // essaie de désactiver les enfants si les adultes sont à 0
+        // {
+        //   field: 'children',
+        //   condition: {
+        //     field: 'adults',
+        //     value: 0,
+        //   },
+        // },
+      ],
+    },
     submitButton: {
       loading: {
         type: 'image',

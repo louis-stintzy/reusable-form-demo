@@ -27,6 +27,14 @@ export interface FooterMessageData {
   linkTo?: string;
 }
 
+export interface FieldDesactivation<T extends FieldValues> {
+  field: Path<T>;
+  condition: {
+    field: string;
+    value: string | number | boolean;
+  };
+}
+
 /**
  * Interface FormField : Définition générique d'un champ de formulaire
  * - `T` représente les valeurs du formulaire (ex: `RegisterCredentials`)
@@ -64,6 +72,9 @@ export interface FormField<T extends FieldValues>
 export interface FormConfig<T extends FieldValues> {
   title: string;
   fields: FormField<T>[];
+  options?: {
+    fieldsDesactivation?: FieldDesactivation<T>[];
+  };
   submitButton: {
     loading: ButtonContentData;
     default: ButtonContentData;

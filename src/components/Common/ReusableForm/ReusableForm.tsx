@@ -40,6 +40,7 @@ function ReusableForm<T extends FieldValues>({
 }: ReusableFormProps<T>) {
   const {
     register,
+    watch,
     handleSubmit,
     formState: { errors },
   } = useForm<T>({
@@ -105,8 +106,10 @@ function ReusableForm<T extends FieldValues>({
         <FormInputs<T>
           formattedTitle={formattedTitle}
           fields={formConfig.fields}
+          options={formConfig.options}
           errors={errors}
           register={register}
+          watch={watch}
         />
         <FormSubmitButton
           formattedTitle={formattedTitle}
