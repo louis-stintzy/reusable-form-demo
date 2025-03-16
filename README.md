@@ -34,7 +34,7 @@ Validation of required fields is handled entirely by the **Zod schema**. The act
 
 The `required: true` option defined in the form configuration (`formConfig`) corresponds to the `required` attribute (see [HTML attribute: required](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/required))
 
-## 🔎 Watching Field Values (`watch`) and 🛑 field desactivation
+## 🔎 Watching Field Values (`watch`) and 🛑 Field Desactivation
 
 The `ReusableForm` component utilizes `watch` from **react-hook-form** to dynamically observe changes in form fields. This allows fields to be dynamically deactivated according to conditions based on other fields in the form.
 
