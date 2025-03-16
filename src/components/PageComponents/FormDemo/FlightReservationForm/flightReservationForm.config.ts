@@ -1,4 +1,4 @@
-import { FlightReservationCredentials } from '../../../../@types/demo';
+import { FlightReservationCredentials } from './flightReservationForm.types';
 import { FormConfig } from '../../../../@types/form';
 import loader from '../../../../assets/loader-circle.svg';
 import {

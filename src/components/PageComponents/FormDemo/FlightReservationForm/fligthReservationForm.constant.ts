@@ -1,35 +1,21 @@
-export const travelClasses: [
-  Record<'value' | 'label', string>,
-  Record<'value' | 'label', string>,
-  Record<'value' | 'label', string>,
-  Record<'value' | 'label', string>,
-] = [
-  { value: 'Economy', label: 'Economy' },
-  { value: 'Premium', label: 'Premium' },
-  { value: 'Business', label: 'Business' },
-  { value: 'LaPremiere', label: 'La Première' },
-];
+import {
+  AirportValue,
+  TravelClassValue,
+  TripTypeValue,
+} from './flightReservationForm.types';
 
-export const travelClassesValuesTuple = travelClasses.map(
-  (travelClass) => travelClass.value
-) as [string, ...string[]]; // as [string, string, string, string] // typage pour zod
-
-export const tripTypes: [
-  Record<'value' | 'label', string>,
-  Record<'value' | 'label', string>,
-] = [
+//------
+export const tripTypes = [
   { value: 'RoundTrip', label: 'Aller-retour' },
   { value: 'OneWay', label: 'Aller simple' },
-];
+] as const;
 
 export const tripTypesValuesTuple = tripTypes.map(
   (tripType) => tripType.value
-) as [string, string]; // typage pour zod
+) as [TripTypeValue, ...TripTypeValue[]]; // typage pour zod
 
-export const airports: {
-  value: string;
-  label: string;
-}[] = [
+//------
+export const airports = [
   {
     value: 'CDG',
     label: 'Paris Charles de Gaulle (CDG), France',
@@ -68,9 +54,21 @@ export const airports: {
   { value: 'TNR', label: 'Aéroport d’Antananarivo-Ivato (TNR), Madagascar' },
   { value: 'RUN', label: 'Roland Garros (RUN), La Réunion' },
   { value: 'ANM', label: 'Aéroport d’Antsirabato (ANM), Madagascar' },
-];
+] as const;
 
 export const airportsValuesTuple = airports.map((airport) => airport.value) as [
-  string,
-  ...string[],
+  AirportValue,
+  ...AirportValue[],
 ];
+
+//------
+export const travelClasses = [
+  { value: 'Economy', label: 'Economy' },
+  { value: 'Premium', label: 'Premium' },
+  { value: 'Business', label: 'Business' },
+  { value: 'LaPremiere', label: 'La Première' },
+] as const;
+
+export const travelClassesValuesTuple = travelClasses.map(
+  (travelClass) => travelClass.value
+) as [TravelClassValue, ...TravelClassValue[]]; // typage pour zod

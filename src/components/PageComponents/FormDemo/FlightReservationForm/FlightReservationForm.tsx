@@ -1,5 +1,5 @@
 import ReusableForm from '../../../Common/ReusableForm/ReusableForm';
-import { FlightReservationCredentials } from '../../../../@types/demo';
+import { FlightReservationCredentials } from './flightReservationForm.types';
 import { flightReservationFormConfig } from './flightReservationForm.config';
 import { flightReservationFormSchema } from './flightReservationForm.schema';
 

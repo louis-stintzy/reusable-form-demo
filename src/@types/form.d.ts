@@ -60,7 +60,7 @@ export interface FormField<T extends FieldValues>
   extends InputHTMLAttributes<HTMLInputElement | HTMLSelectElement> {
   label: string;
   id: Path<T>;
-  options?: { value: string; label: string }[];
+  options?: readonly { readonly value: string; readonly label: string }[]; // `as const` est utilisé dans les constantes pour avoir le bon type (tuple) dans le schema zod et rend les tableaux readonly
 }
 
 /**
