@@ -60,8 +60,9 @@ function FormInput<T extends FieldValues>({
       {type === 'select' ? (
         <select
           id={id}
+          required={required}
           {...register(id, {
-            required: required,
+            // required: required,
           })}
           {...inputProps}
           className={`${formattedTitle}-form__input`}
@@ -84,8 +85,9 @@ function FormInput<T extends FieldValues>({
         <input
           id={id}
           type={type}
+          required={required}
           {...register(id, {
-            required: required ? 'Ce champ est requis.' : false, // Todo: Fix this
+            // required: required ? 'Ce champ est requis.' : false, // Todo: Fix this
             valueAsNumber: type === 'number',
           })}
           {...inputProps}
