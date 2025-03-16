@@ -3,6 +3,8 @@
  * - Gère l'affichage d'une liste de champs de formulaire
  * - Transmet les éventuelles erreurs de validation à chaque champ
  * - Transmet `register` de `react-hook-form` pour enregistrer les champs
+ * - Transmet `watch` de `react-hook-form` pour surveiller les valeurs des champs
+ * - Transmet `setValue` de `react-hook-form` pour mettre à jour les valeurs des champs
  *
  * @template T - Type générique représentant les valeurs du formulaire (ex: `RegisterCredentials`)
  * @param {Object} props - Les propriétés du composant
@@ -10,6 +12,8 @@
  * @param {FormField<T>[]} props.fields - Liste des champs de formulaire à afficher
  * @param {FieldErrors<T>} props.errors - Erreurs de validation des champs de formulaire
  * @param {UseFormRegister<T>} props.register - Fonction `register` de `react-hook-form`
+ * @param {UseFormWatch<T>} props.watch - Fonction `watch` de `react-hook-form`
+ * @param {UseFormSetValue<T>} props.setValue - Fonction `setValue` de `react-hook-form`
  * @returns {JSX.Element} - Liste de composants FormInput
  */
 
@@ -48,14 +52,16 @@ function FormInputs<T extends FieldValues>({
   setValue,
 }: FormInputsProps<T>) {
   // 1/ Identification des champs à surveiller (pour désactiver éventuellement d'autres champs)
-  // todo : mettre un useMemo pour éviter de recalculer à chaque render ?
   const fieldsToWatch =
     options?.fieldsDesactivation?.map((field) => field.condition.field) ?? [];
+
   // 2/ Récupération des valeurs des champs à surveiller
   const watchFieldsValues: PathValue<T, Path<T>>[] = watch(
     fieldsToWatch as Path<T>[]
   );
+
   // 3/ Identification des champs à désactiver (par comparaison des valeurs des champs surveillés aux conditions de désactivation)
+  // note : on utilise useMemo pour éviter de recalculer disableFields à chaque render (ce serait une nouvelle référence à chaque fois et le useEffect serait appelé à chaque render)
   const disableFields = useMemo<Path<T>[]>(() => {
     const fieldsToDisable: Path<T>[] = [];
     options?.fieldsDesactivation?.forEach(({ field, condition }, index) => {
@@ -70,56 +76,17 @@ function FormInputs<T extends FieldValues>({
     return fieldsToDisable;
   }, [options?.fieldsDesactivation, watchFieldsValues]);
 
-  // note : fonctionne ci-dessous mais génère un warning car disableFields est utilisé dans le useEffect
-  // note : le tableau est réinitialisé à chaque render, c'est une nouvelle référence à chaque fois (donc le useEffect est appelé à chaque render)
-  // // On crée un tableau `disableFields` pour stocker les champs à désactiver
-  //  const disableFields: Path<T>[] = [];
-  // // Si `options.fieldsDesactivation` existe, on crée un tableau `fieldsToWatch` contenant les champs à surveiller
-  // if (options?.fieldsDesactivation) {
-  //   const fieldsToWatch = options.fieldsDesactivation.map(
-  //     (field) => field.condition.field
-  //   );
-  //   // On récupère les valeurs des champs à surveiller avec `watch`
-  //   const watchFieldsValues: PathValue<T, Path<T>>[] = watch(
-  //     fieldsToWatch as Path<T>[]
-  //   );
-  //   // console.log(watchFieldsValues);
-  //   // On compare les valeurs des champs surveillés aux conditions de désactivation (si la valeur en position `index` est égale à la valeur de la condition en position `index`, on désactive le champ correspondant)
-  //   fieldsToWatch.forEach((_field, index) => {
-  //     if (options.fieldsDesactivation) {
-  //       if (
-  //         watchFieldsValues[index] ===
-  //         options.fieldsDesactivation[index].condition.value
-  //       ) {
-  //         disableFields.push(options.fieldsDesactivation[index].field);
-  //       }
-  //     }
-  //   });
-  //   // console.log(disableFields);
-  // }
-
   useEffect(() => {
-    console.log('Champs à désactiver', disableFields);
+    // console.log('Champs à désactiver', disableFields);
     // On nettoie les champs stockés dans `disableFields` avec `setValue`
     disableFields.forEach((field) => {
-      // todo: Réinitialiser avec la valeur par défaut ou une chaîne vide ?
+      // note: Réinitialiser avec la valeur par défaut ou une chaîne vide ?
       // il faut retrouver dans les fields du form config le champ à nettoyer (disableFields n'est qu'un tableau de string)
-      // note : 1/ avec la valeur par défaut
-      const fieldConfig = fields.find((f) => f.id === field);
-      if (fieldConfig) {
-        const defaultValue = fieldConfig.defaultValue ?? '';
-        setValue(field, defaultValue as PathValue<T, Path<T>>);
+      const fieldToClean = fields.find((f) => f.id === field);
+      if (fieldToClean) {
+        const valueToSet = fieldToClean.defaultValue ?? '';
+        setValue(field, valueToSet as PathValue<T, Path<T>>); // `setValue(field` ou `setValue(fieldToClean.id` est équivalent puisque c'est "name" de setValue qui est utilisé)
       }
-      // note : 1/ avec la valeur par défaut (ancienne version)
-      // const fieldToClean = fields.find((f) => f.id === field)!; // on utilise le ! car on est sûr de trouver le champ
-      // const fieldToCleanId = fieldToClean.id as Path<T>; // on cast le id en Path<T> pour setValue
-      // const valueToPut =
-      //   (fieldToClean.defaultValue as PathValue<T, Path<T>>) ??
-      //   ('' as PathValue<T, Path<T>>); // on cast le defaultValue en PathValue<T, Path<T>> pour setValue
-      // setValue(fieldToCleanId, valueToPut); // on attribue au champ sa valeur par défaut ou une chaîne vide
-      // note : 2/ avec une chaîne vide
-      // const fieldToClean = fields.find((f) => f.id === field)?.id as Path<T>;
-      // setValue(fieldToClean, '' as PathValue<T, Path<T>>);
     });
   }, [disableFields, fields, setValue]);
   return (

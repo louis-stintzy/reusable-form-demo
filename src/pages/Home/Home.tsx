@@ -46,10 +46,9 @@ function Home() {
         <ul>
           <li>Input Type</li>
           <li>select</li>
-          <li>text</li>
           <li>date</li>
           <li>number</li>
-          <li>checkbox</li>
+          <li>switch</li>
         </ul>
         <NavLink to="/demo/flight-reservation">Flight Reservation</NavLink>
       </div>

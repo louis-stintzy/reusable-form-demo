@@ -27,6 +27,12 @@ export interface FooterMessageData {
   linkTo?: string;
 }
 
+/**
+ * Interface FieldDesactivation : Définition de la désactivation d'un champ de formulaire
+ * - `field` est le champ à désactiver
+ * - `condition` est l'objet contenant le champ et sa valeur de condition
+ */
+
 export interface FieldDesactivation<T extends FieldValues> {
   field: Path<T>;
   condition: {

@@ -82,6 +82,7 @@ export const flightReservationFormConfig: FormConfig<FlightReservationCredential
     ],
     options: {
       fieldsDesactivation: [
+        // Désactive le champ "Date de retour" si le champ "Type de voyage" est à "OneWay"
         {
           field: 'returnDate',
           condition: {
@@ -89,14 +90,14 @@ export const flightReservationFormConfig: FormConfig<FlightReservationCredential
             value: 'OneWay',
           },
         },
-        // Essai : désactive les enfants si les adultes sont à 0
-        {
-          field: 'children',
-          condition: {
-            field: 'adults',
-            value: 0,
-          },
-        },
+        // Désactive les enfants si les adultes sont à 0
+        // {
+        //   field: 'children',
+        //   condition: {
+        //     field: 'adults',
+        //     value: 0,
+        //   },
+        // },
       ],
     },
     submitButton: {
