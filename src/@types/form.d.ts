@@ -69,6 +69,8 @@ export interface FormField<T extends FieldValues>
  * @template T - Type des données du formulaire (ex: `RegisterCredentials`)
  * @property {string} title - Titre du formulaire.
  * @property {FormField<T>[]} fields - Liste des champs du formulaire, chacun défini selon `FormField<T>`.
+ * @property {Object} [options] - Options du formulaire.
+ * @property {FieldDesactivation<T>[]} [options.fieldsDesactivation] - Liste des champs à désactiver selon certaines conditions (permet de désactiver dynamiquement des champs en fonction de conditions basées sur d'autres champs du formulaire.)
  * @property {Object} submitButton - Contient le contenu du bouton de soumission.
  * @property {ButtonContentData} submitButton.loading - Texte ou image à afficher pendant le chargement.
  * @property {ButtonContentData} submitButton.default - Texte ou image à afficher par défaut.
