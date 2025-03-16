@@ -1,7 +1,7 @@
-import { ProfileCredentials } from '../../../../@types/demo';
 import ReusableForm from '../../../Common/ReusableForm/ReusableForm';
 import { userProfileFormConfig } from './userProfileForm.config';
 import { userProfileFormSchema } from './userProfileForm.schema';
+import { ProfileCredentials } from './userProfileForm.types';
 
 import './UserProfileForm.style.css';
 
