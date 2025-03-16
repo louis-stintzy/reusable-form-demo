@@ -19,10 +19,12 @@ import {
   Path,
   PathValue,
   UseFormRegister,
+  UseFormSetValue,
   UseFormWatch,
 } from 'react-hook-form';
 import { FieldDesactivation, FormField } from '../../../../@types/form';
 import FormInput from './FormInput';
+import { useEffect } from 'react';
 
 interface FormInputsProps<T extends FieldValues> {
   formattedTitle: string;
@@ -33,6 +35,7 @@ interface FormInputsProps<T extends FieldValues> {
   errors: FieldErrors<T>;
   register: UseFormRegister<T>;
   watch: UseFormWatch<T>;
+  setValue: UseFormSetValue<T>;
 }
 
 function FormInputs<T extends FieldValues>({
@@ -42,7 +45,9 @@ function FormInputs<T extends FieldValues>({
   errors,
   register,
   watch,
+  setValue,
 }: FormInputsProps<T>) {
+  // note : fonctionne mais génère un warning car disableFields est utilisé dans le useEffect
   // On crée un tableau `disableFields` pour stocker les champs à désactiver
   const disableFields: Path<T>[] = [];
   // Si `options.fieldsDesactivation` existe, on crée un tableau `fieldsToWatch` contenant les champs à surveiller
@@ -68,6 +73,25 @@ function FormInputs<T extends FieldValues>({
     });
     // console.log(disableFields);
   }
+
+  useEffect(() => {
+    console.log('Champs à désactiver', disableFields);
+    // On nettoie les champs stockés dans `disableFields` avec `setValue`
+    disableFields.forEach((field) => {
+      // todo: Réinitialiser avec la valeur par défaut ou une chaîne vide ?
+      // il faut retrouver dans les fields du form config le champ à nettoyer (disableFields n'est qu'un tableau de string)
+      // note : 1/ avec la valeur par défaut
+      const fieldToClean = fields.find((f) => f.id === field)!; // on utilise le ! car on est sûr de trouver le champ
+      const fieldToCleanId = fieldToClean.id as Path<T>; // on cast le id en Path<T> pour setValue
+      const valueToPut =
+        (fieldToClean.defaultValue as PathValue<T, Path<T>>) ??
+        ('' as PathValue<T, Path<T>>); // on cast le defaultValue en PathValue<T, Path<T>> pour setValue
+      setValue(fieldToCleanId, valueToPut); // on attribue au champ sa valeur par défaut ou une chaîne vide
+      // note : 2/ avec une chaîne vide
+      // const fieldToClean = fields.find((f) => f.id === field)?.id as Path<T>;
+      // setValue(fieldToClean, '' as PathValue<T, Path<T>>);
+    });
+  }, [disableFields, fields, setValue]);
   return (
     <>
       {fields.map((field) => (

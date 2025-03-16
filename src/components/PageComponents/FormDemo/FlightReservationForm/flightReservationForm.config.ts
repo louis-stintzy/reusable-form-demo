@@ -49,7 +49,7 @@ export const flightReservationFormConfig: FormConfig<FlightReservationCredential
         id: 'returnDate',
         type: 'date',
         // min: new Date().toISOString().split('T')[0],
-        defaultValue: new Date().toISOString().split('T')[0],
+        // defaultValue: new Date().toISOString().split('T')[0], // en cas d'aller simple le form prend la date par défaut de retour
       },
       {
         label: 'Adultes',
@@ -89,7 +89,7 @@ export const flightReservationFormConfig: FormConfig<FlightReservationCredential
             value: 'OneWay',
           },
         },
-        // essaie de désactiver les enfants si les adultes sont à 0
+        // Essai : désactive les enfants si les adultes sont à 0
         // {
         //   field: 'children',
         //   condition: {

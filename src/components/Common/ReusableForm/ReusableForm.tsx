@@ -41,6 +41,7 @@ function ReusableForm<T extends FieldValues>({
   const {
     register,
     watch,
+    setValue,
     handleSubmit,
     formState: { errors },
   } = useForm<T>({
@@ -110,6 +111,7 @@ function ReusableForm<T extends FieldValues>({
           errors={errors}
           register={register}
           watch={watch}
+          setValue={setValue}
         />
         <FormSubmitButton
           formattedTitle={formattedTitle}
