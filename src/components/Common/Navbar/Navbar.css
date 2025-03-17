@@ -1,0 +1,221 @@
+/* ----- Container ----- */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(64, 64, 64, 0.8);
+}
+
+.nav-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ----- Logo ----- */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  height: 2.5rem;
+  width: auto;
+}
+
+.nav-logo img {
+  height: 2.5rem;
+  width: auto;
+}
+
+/* ----- Links ----- */
+.nav-links {
+  margin-left: 3.5rem;
+  display: flex;
+  gap: 3rem;
+}
+
+.nav-links li a {
+  color: inherit;
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+.nav-links a:hover {
+  color: var(--logo-color);
+}
+
+/* ----- Actions ----- */
+.nav-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-actions a {
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+.btn-signin {
+  appearance: none;
+  background-color: var(--bg-color);
+  border: 1px solid var(--third-color-light);
+  border-radius: 6px;
+  box-shadow:
+    rgba(27, 31, 35, 0.04) 0 1px 0,
+    rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+  box-sizing: border-box;
+  color: var(--third-color-light);
+  cursor: pointer;
+  display: inline-block;
+  /* font-family:
+    -apple-system, system-ui, 'Segoe UI', Helvetica, Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji'; */
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 20px;
+  list-style: none;
+  padding: 4px 16px;
+  position: relative;
+  transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+  word-wrap: break-word;
+}
+
+.btn-signin:hover {
+  background-color: var(--bg-color-light);
+  text-decoration: none;
+  transition-duration: 0.1s;
+}
+
+.btn-signin:disabled {
+  background-color: #fafbfc;
+  border-color: rgba(27, 31, 35, 0.15);
+  color: #959da5;
+  cursor: default;
+}
+
+.btn-signin:active {
+  background-color: #edeff2;
+  box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+  transition: none 0s;
+}
+
+.btn-signin:focus {
+  outline: 1px transparent;
+}
+
+.btn-signin:before {
+  display: none;
+}
+
+.btn-signin:-webkit-details-marker {
+  display: none;
+}
+
+/* .btn-create-account {
+  background-color: var(--logo-color-light);
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color: var(--third-color-light);
+  cursor: pointer;
+  display: inline-block;
+
+  font-size: 14px;
+  font-weight: 500;
+  height: 40px;
+  line-height: 20px;
+  list-style: none;
+  margin: 0;
+  outline: none;
+  padding: 10px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: color 100ms;
+  vertical-align: baseline;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.btn-create-account:hover,
+.btn-create-account:focus {
+  background-color: #f082ac;
+} */
+
+.btn-create-account {
+  appearance: none;
+  background-color: #fafbfc;
+  border: 1px solid rgba(27, 31, 35, 0.15);
+  border-radius: 6px;
+  box-shadow:
+    rgba(27, 31, 35, 0.04) 0 1px 0,
+    rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+  box-sizing: border-box;
+  color: var(--bg-color);
+  cursor: pointer;
+  display: inline-block;
+  /* font-family:
+      -apple-system, system-ui, 'Segoe UI', Helvetica, Arial, sans-serif,
+      'Apple Color Emoji', 'Segoe UI Emoji'; */
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 20px;
+  list-style: none;
+  padding: 4px 16px;
+  position: relative;
+  transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+  word-wrap: break-word;
+}
+
+.btn-create-account:hover {
+  background-color: #f3f4f6;
+  text-decoration: none;
+  transition-duration: 0.1s;
+}
+
+.btn-create-account:disabled {
+  background-color: #fafbfc;
+  border-color: rgba(27, 31, 35, 0.15);
+  color: #959da5;
+  cursor: default;
+}
+
+.btn-create-account:active {
+  background-color: #edeff2;
+  box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+  transition: none 0s;
+}
+
+.btn-create-account:focus {
+  outline: 1px transparent;
+}
+
+.btn-create-account:before {
+  display: none;
+}
+
+.btn-create-account:-webkit-details-marker {
+  display: none;
+}
+
+.mobile-menu-button {
+  display: none;
+}

@@ -1,6 +1,9 @@
 /*=============== GOOGLE FONTS ===============*/
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap');
 
+/*=============== TAILWIND ===============*/
+/* @import 'tailwindcss' prefix(tw); */
+
 /*=============== VARIABLES CSS ===============*/
 :root {
   /*========== Colors ==========*/
@@ -17,6 +20,11 @@
   --gray-color-normal: #525252;
   --gray-color-dark: #252525;
   --black-color: #020202;
+
+  --logo-color: #6662ff;
+  --logo-color-light: #7473ff;
+  --bg-color: #101828;
+  --bg-color-light: #182338;
 
   /*========== Font and typography ==========*/
   --body-font: 'Poppins', sans-serif;

@@ -1,0 +1,24 @@
+.home-page__container {
+  background-color: var(--bg-color);
+  color: var(--third-color-light);
+  min-height: 100vh;
+}
+
+.container {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 5rem;
+  max-width: 80rem;
+}
+
+.text-red-500 {
+  color: rgb(255, 54, 27);
+}
+
+.text-blue-500 {
+  color: rgb(0, 153, 255);
+}
+
+.text-green-500 {
+  color: rgb(0, 134, 18);
+}
