@@ -20,8 +20,8 @@ function HeroSection() {
           Documentation
         </a>
       </div>
-      <div className="video-container">
-        {/* <video autoPlay loop muted className="hero-video">
+      {/* <div className="video-container">
+         <video autoPlay loop muted className="hero-video">
           // <source src={video1} type="video/mp4" />
           // Your browser does not support the video tag. //{' '}
         </video>
@@ -29,8 +29,8 @@ function HeroSection() {
         <video autoPlay loop muted className="hero-video">
           // <source src={video2} type="video/mp4" />
           // Your browser does not support the video tag. //{' '}
-        </video> */}
-      </div>
+        </video>
+      </div> */}
     </div>
   );
 }

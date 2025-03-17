@@ -2,7 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 1.5rem;
+  margin-top: 9rem;
+  margin-bottom: 22rem;
 }
 
 @media (min-width: 1024px) {
@@ -37,7 +38,7 @@
 }
 
 .hero-description {
-  margin-top: 2.5rem;
+  margin-top: 4.5rem;
   text-align: center;
   color: #737373;
   max-width: 64rem;
@@ -47,7 +48,7 @@
 .hero-buttons {
   display: flex;
   justify-content: center;
-  margin-top: 2.5rem;
+  margin-top: 3.5rem;
   gap: 1rem;
 }
 

@@ -35,6 +35,10 @@
   --tiny-font-size: 0.5rem;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--body-font);
   font-size: var(--normal-font-size);

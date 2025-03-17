@@ -12,7 +12,7 @@ function Navbar() {
     setMobileDrawerOpen(!mobileDrawerOpen);
   };
   const navLinks = [
-    { title: 'Features', path: '#' },
+    { title: 'Features', path: '#features' },
     // { title: 'Workflow', path: '#' },
     { title: 'Pricing', path: '#' },
     { title: 'Testimonials', path: '#' },

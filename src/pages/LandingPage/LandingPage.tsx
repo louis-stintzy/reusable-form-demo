@@ -3,6 +3,7 @@ import Navbar from '../../components/PageComponents/LandingPage/Navbar/Navbar';
 
 import './LandingPage.css';
 import HeroSection from '../../components/PageComponents/LandingPage/HeroSection/HeroSection';
+import FeatureSection from '../../components/PageComponents/LandingPage/FeatureSection/FeatureSection';
 
 function LandingPage() {
   return (
@@ -10,6 +11,7 @@ function LandingPage() {
       <Navbar />
       <div className="container">
         <HeroSection />
+        <FeatureSection />
         <h1 className="text-red-500">Home</h1>
 
         <div style={{ display: 'flex', flexDirection: 'column' }}>
