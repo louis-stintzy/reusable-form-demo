@@ -1,9 +1,9 @@
 import { NavLink } from 'react-router-dom';
 
 import './Navbar.css';
-import logo from '../../../assets/logo2.png';
-import menu from '../../../assets/menu.svg';
-import X from '../../../assets/x.svg';
+import logo from '../../../../assets/logo2.png';
+import menu from '../../../../assets/menu.svg';
+import X from '../../../../assets/x.svg';
 import { useState } from 'react';
 
 function Navbar() {

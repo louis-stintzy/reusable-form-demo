@@ -1,6 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from '../App';
-import Home from '../pages/Home/Home';
 import Login from '../pages/Login/Login';
 import Signup from '../pages/Signup/Signup';
 import Dashboard from '../pages/Dashboard/Dashboard';
@@ -9,6 +8,7 @@ import ResetPassword from '../pages/ResetPassword/ResetPassword';
 import ProtectedRoute from './ProtectedRoute';
 import UserProfile from '../pages/Demo/UserProfile/UserProfile';
 import FlightReservation from '../pages/Demo/FlightReservation/FlightReservation';
+import LandingPage from '../pages/LandingPage/LandingPage';
 
 export const routerConfig = [
   {
@@ -17,7 +17,7 @@ export const routerConfig = [
     children: [
       {
         path: '',
-        element: <Home />,
+        element: <LandingPage />,
       },
       {
         path: 'login',

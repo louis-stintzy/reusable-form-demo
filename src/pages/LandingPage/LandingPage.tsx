@@ -1,9 +1,9 @@
 import { NavLink } from 'react-router-dom';
+import Navbar from '../../components/PageComponents/LandingPage/Navbar/Navbar';
 
-import './Home.css';
-import Navbar from '../../components/Common/Navbar/Navbar';
+import './LandingPage.css';
 
-function Home() {
+function LandingPage() {
   return (
     <div className="home-page__container">
       <Navbar />
@@ -64,4 +64,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default LandingPage;
