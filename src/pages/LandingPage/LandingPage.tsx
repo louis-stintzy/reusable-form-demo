@@ -2,12 +2,14 @@ import { NavLink } from 'react-router-dom';
 import Navbar from '../../components/PageComponents/LandingPage/Navbar/Navbar';
 
 import './LandingPage.css';
+import HeroSection from '../../components/PageComponents/LandingPage/HeroSection/HeroSection';
 
 function LandingPage() {
   return (
     <div className="home-page__container">
       <Navbar />
       <div className="container">
+        <HeroSection />
         <h1 className="text-red-500">Home</h1>
 
         <div style={{ display: 'flex', flexDirection: 'column' }}>
