@@ -113,8 +113,85 @@ const style = `/* ./App.css */
   padding: 12px 20px;
   border-radius: 8px;
   margin-bottom: 15px;
-  animation: fadeIn 0.5s ease-in-out, fadeOut 0.5s ease-in-out 2.5s forwards;
+  animation:
+    fadeIn 0.5s ease-in-out, fadeOut 0.5s ease-in-out 2.5s forwards;
 }
+
+/* 🟢 Form */
+.sign-up-form__container {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  width: 100%;
+  max-width: 400px;
+}
+
+.sign-up-form__title {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.sign-up-form__input-container {
+  margin-bottom: 15px;
+}
+
+.sign-up-form__label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.sign-up-form__input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.sign-up-form__button {
+  background: #007bff;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.sign-up-form__button:hover {
+  background: #0056b3;
+}
+
+.sign-up-form__error {
+  color: red;
+  font-size: 14px;
+}
+
+.sign-up-form__footer-message {
+  background: #4caf50;
+  color: white;
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 15px;
+  animation: fadeIn 0.5s ease-in-out, fadeOut 0.5s ease-in-out 3s forwards;
+}
+
+.sign-up-form__footer-message.toast {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 
 @keyframes fadeIn {
   from {
@@ -138,7 +215,7 @@ const style = `/* ./App.css */
 const exampleFormCode = `// ./App.tsx
 import React, { useState } from "react";
 import { z } from "zod";
-import { ReusableForm } from "@lstz/reusable-form";
+import { ReusableForm, FooterMessageData } from "@lstz/reusable-form";
 import "./App.css";
 
 type FormValues = {
@@ -175,10 +252,14 @@ const formSchema = z.object({
 });
 
 export default function App() {
-  const [message, setMessage] = useState<string | null>(null);
+  const [footerMessage, setFooterMessage] =
+    useState<FooterMessageData | null>(null);
 
   const handleSubmit = (data: FormValues) => {
-    setMessage(\`🎉 \${data.name} loves ReusableForm !\`);
+  setFooterMessage({
+    type: "success",
+    text:
+      "🎉 \${data.name} has successfully joined the ReusableForm Fan Club!",
     setTimeout(() => setShowConfetti(false), 3000);
   };
 
@@ -193,6 +274,7 @@ export default function App() {
         formConfig={formConfig}
         formSchema={formSchema}
         action={handleSubmit}
+        footerMessage={footerMessage}
       />
     </div>
   );
