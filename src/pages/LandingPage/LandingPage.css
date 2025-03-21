@@ -11,6 +11,7 @@
   padding-right: 1.5rem;
   padding-top: 5rem;
   max-width: 80rem;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
 .text-red-500 {

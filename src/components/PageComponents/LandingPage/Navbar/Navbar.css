@@ -26,6 +26,8 @@
   align-items: center;
   height: 2.5rem;
   width: auto;
+  text-decoration: none;
+  color: inherit;
 }
 
 .nav-logo img {

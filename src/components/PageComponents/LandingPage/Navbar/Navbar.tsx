@@ -11,6 +11,9 @@ function Navbar() {
   const toggleNavbar = () => {
     setMobileDrawerOpen(!mobileDrawerOpen);
   };
+
+  // todo :  les liens doivent renvoyer vers des sections de la page LandingPage (et "logo" vers le haut de la page LandingPage)
+
   const navLinks = [
     { title: 'Features', path: '#features' },
     // { title: 'Workflow', path: '#' },
@@ -22,12 +25,12 @@ function Navbar() {
     <nav className="navbar">
       <div className="nav-content">
         {/* Nav Logo */}
-        <div className="nav-logo">
+        <NavLink to="/" className="nav-logo">
           <img src={logo} alt="logo" />
           <p>
             Reusable<span>Form</span>
           </p>
-        </div>
+        </NavLink>
         {/* Nav Links */}
         <ul className="nav-links">
           {navLinks.map((link) => (
@@ -71,6 +74,9 @@ function Navbar() {
                   <a href={item.path}>{item.title}</a>
                 </li>
               ))}
+              <li className="mobile-nav-item">
+                <NavLink to="/get-started">Get Started</NavLink>
+              </li>
               <li className="mobile-nav-item">
                 <NavLink to="/login" className="mobile-signin">
                   Sign In
