@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import './HeroSection.css';
 
 function HeroSection() {
@@ -13,9 +14,12 @@ function HeroSection() {
         into forms instantly!
       </p>
       <div className="hero-buttons">
-        <a href="#" className="btn-start">
+        <NavLink to="/start-project" className="btn-start">
           Start for free
-        </a>
+        </NavLink>
+        {/* <a href="#" className="btn-start">
+          Start for free
+        </a> */}
         <a href="#" className="btn-docs">
           Documentation
         </a>

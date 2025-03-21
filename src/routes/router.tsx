@@ -9,6 +9,8 @@ import ProtectedRoute from './ProtectedRoute';
 import UserProfile from '../pages/Demo/UserProfile/UserProfile';
 import FlightReservation from '../pages/Demo/FlightReservation/FlightReservation';
 import LandingPage from '../pages/LandingPage/LandingPage';
+import StartProject from '../pages/StartProject/StartProject';
+import GetStarted from '../pages/GetStarted/GetStarted';
 
 export const routerConfig = [
   {
@@ -18,6 +20,14 @@ export const routerConfig = [
       {
         path: '',
         element: <LandingPage />,
+      },
+      {
+        path: 'get-started',
+        element: <GetStarted />,
+      },
+      {
+        path: 'start-project',
+        element: <StartProject />,
       },
       {
         path: 'login',

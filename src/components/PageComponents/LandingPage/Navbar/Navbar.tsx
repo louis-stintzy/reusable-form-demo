@@ -16,7 +16,7 @@ function Navbar() {
     // { title: 'Workflow', path: '#' },
     { title: 'Pricing', path: '#' },
     { title: 'Testimonials', path: '#' },
-    { title: 'Get Started', path: '#' },
+    // { title: 'Get Started', path: '#' },
   ];
   return (
     <nav className="navbar">
@@ -35,6 +35,9 @@ function Navbar() {
               <a href={link.path}>{link.title}</a>
             </li>
           ))}
+          <li>
+            <NavLink to="/get-started">Get Started</NavLink>
+          </li>
         </ul>
         {/* Nav Actions */}
         <ul className="nav-actions">
@@ -79,14 +82,6 @@ function Navbar() {
                 </NavLink>
               </li>
             </ul>
-            {/* <div className="mobile-buttons">
-              <a href="#" className="mobile-login-button">
-                Log in
-              </a>
-              <a href="#" className="mobile-create-account">
-                Sign up
-              </a>
-            </div> */}
           </div>
         )}
         {/* ----- */}
