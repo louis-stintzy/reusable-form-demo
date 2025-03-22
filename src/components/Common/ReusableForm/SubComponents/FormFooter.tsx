@@ -21,6 +21,7 @@ interface FormFooterProps {
 function FormFooter({ formattedTitle, footerMessage }: FormFooterProps) {
   const { type, text, linkText, linkTo } = footerMessage;
   if (type === 'none') return null;
+  // TODO: changer les nom des classes pour "message" et pas "link" ici et dans la doc et dans le css des formulaires
   return (
     <div className={`${formattedTitle}-form__link-container--${type}`}>
       {text && (

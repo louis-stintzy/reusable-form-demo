@@ -87,23 +87,24 @@ function GetStarted() {
   );
 }
 
-const style = `/* ./App.css */
+const style = `/* --- App.css --- */
 .app-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   min-height: 100vh;
+  width: 100vw;
   background-color: #f4f4f4;
-  padding: 20px;
 }
 
 .app-title {
+  margin-top: 15rem;
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 20px;
   color: #4a90e2;
   text-align: center;
+  margin-bottom: 20px;
 }
 
 .message-box {
@@ -118,7 +119,7 @@ const style = `/* ./App.css */
 }
 
 /* 🟢 Form */
-.sign-up-form__container {
+.join-the-reusableform-fan-club-form__container {
   background: white;
   padding: 20px;
   border-radius: 8px;
@@ -129,31 +130,35 @@ const style = `/* ./App.css */
   max-width: 400px;
 }
 
-.sign-up-form__title {
+.join-the-reusableform-fan-club-form__title {
   text-align: center;
   font-size: 20px;
-  margin-bottom: 15px;
+  margin-bottom: 2.5rem;
   color: #333;
 }
 
-.sign-up-form__input-container {
+.join-the-reusableform-fan-club-form__input-container {
   margin-bottom: 15px;
 }
 
-.sign-up-form__label {
+.join-the-reusableform-fan-club-form__label {
   display: block;
   font-weight: bold;
   margin-bottom: 5px;
 }
 
-.sign-up-form__input {
-  width: 100%;
+.join-the-reusableform-fan-club-form__input {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  box-sizing: border-box;
 }
 
-.sign-up-form__button {
+input[type="text"] {
+  width: 100%;
+}
+
+.join-the-reusableform-fan-club-form__button {
   background: #007bff;
   color: white;
   padding: 10px;
@@ -163,16 +168,21 @@ const style = `/* ./App.css */
   font-size: 16px;
 }
 
-.sign-up-form__button:hover {
+.join-the-reusableform-fan-club-form__button:hover {
   background: #0056b3;
 }
 
-.sign-up-form__error {
-  color: red;
-  font-size: 14px;
+.join-the-reusableform-fan-club-form__error-container {
+  margin: 1rem 0;
+  height: 2rem;
 }
 
-.sign-up-form__footer-message {
+.join-the-reusableform-fan-club-form__error {
+  color: rgb(133, 34, 34);
+  font-size: 1rem;
+}
+
+.join-the-reusableform-fan-club-form__link-container--success {
   background: #4caf50;
   color: white;
   font-size: 16px;
@@ -180,10 +190,9 @@ const style = `/* ./App.css */
   border-radius: 8px;
   text-align: center;
   margin-top: 15px;
-  animation: fadeIn 0.5s ease-in-out, fadeOut 0.5s ease-in-out 3s forwards;
 }
 
-.sign-up-form__footer-message.toast {
+.join-the-reusableform-fan-club-form__link-container--success {
   position: fixed;
   top: 20px;
   left: 50%;
@@ -212,10 +221,15 @@ const style = `/* ./App.css */
 }
 `;
 
-const exampleFormCode = `// ./App.tsx
-import React, { useState } from "react";
+const exampleFormCode = `// --- App.tsx ---
+import { useState } from "react";
 import { z } from "zod";
-import { ReusableForm, FooterMessageData } from "@lstz/reusable-form";
+import { ReusableForm } from "@lstz/reusable-form";
+import {
+  FooterMessageData,
+  FormConfig
+} from "@lstz/reusable-form/dist/types";
+
 import "./App.css";
 
 type FormValues = {
@@ -223,7 +237,7 @@ type FormValues = {
   lovesReusableForm: boolean;
 };
 
-const formConfig = {
+const formConfig: FormConfig<FormValues> = {
   title: "🚀 Join the ReusableForm Fan Club!",
   fields: [
     {
@@ -241,7 +255,13 @@ const formConfig = {
   submitButton: {
     loading: { type: "text", content: "Submitting..." },
     default: { type: "text", content: "Join Now" }
-  }
+  },
+  footerMessage: {
+    type: 'default',
+    text: '',
+    linkText: '',
+    linkTo: '',
+  },
 };
 
 const formSchema = z.object({
@@ -253,14 +273,15 @@ const formSchema = z.object({
 
 export default function App() {
   const [footerMessage, setFooterMessage] =
-    useState<FooterMessageData | null>(null);
+    useState<FooterMessageData | undefined>(undefined);
 
   const handleSubmit = (data: FormValues) => {
   setFooterMessage({
     type: "success",
     text:
-      "🎉 \${data.name} has successfully joined the ReusableForm Fan Club!",
-    setTimeout(() => setShowConfetti(false), 3000);
+      \`🎉 \${data.name} has successfully joined the ReusableForm Fan Club!\`
+  });
+  setTimeout(() => setFooterMessage(undefined), 5000);
   };
 
   return (
@@ -268,7 +289,6 @@ export default function App() {
       <h1 className="app-title">
         🎉 Welcome to the ReusableForm Demo
       </h1>
-      {message && <div className="message-box">{message}</div>}
       <ReusableForm
         isLoading={false}
         formConfig={formConfig}
