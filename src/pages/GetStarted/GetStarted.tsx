@@ -29,6 +29,7 @@ function GetStarted() {
             <p className="get-started-process__description">
               <NotebookPen size={16} /> Choose a React project with Typescript
             </p>
+            <CodeBlock>cd your-project-name</CodeBlock>
           </Section>
           <Section title="2️⃣ Install the necessary dependencies">
             <div className="get-started-process__label-group">
