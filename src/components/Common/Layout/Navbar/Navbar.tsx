@@ -15,11 +15,10 @@ function Navbar() {
   // todo :  les liens doivent renvoyer vers des sections de la page LandingPage (et "logo" vers le haut de la page LandingPage)
 
   const navLinks = [
-    { title: 'Features', path: '#features' },
-    // { title: 'Workflow', path: '#' },
-    { title: 'Pricing', path: '#' },
+    { title: 'Features', path: '/#features' },
+    { title: 'Demo', path: '/#demo' },
     { title: 'Testimonials', path: '#' },
-    // { title: 'Get Started', path: '#' },
+    { title: 'Get Started', path: '/get-started' },
   ];
   return (
     <nav className="navbar">
@@ -35,12 +34,9 @@ function Navbar() {
         <ul className="nav-links">
           {navLinks.map((link) => (
             <li key={link.title}>
-              <a href={link.path}>{link.title}</a>
+              <NavLink to={link.path}>{link.title}</NavLink>
             </li>
           ))}
-          <li>
-            <NavLink to="/get-started">Get Started</NavLink>
-          </li>
         </ul>
         {/* Nav Actions */}
         <ul className="nav-actions">
@@ -71,7 +67,7 @@ function Navbar() {
             <ul className="mobile-nav-links">
               {navLinks.map((item, index) => (
                 <li key={index} className="mobile-nav-item">
-                  <a href={item.path}>{item.title}</a>
+                  <NavLink to={item.path}>{item.title}</NavLink>
                 </li>
               ))}
               <li className="mobile-nav-item">

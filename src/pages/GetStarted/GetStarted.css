@@ -12,11 +12,11 @@
   --code-bg: #0f172a;
 }
 
-.get-started-page__container {
+/* .get-started-page__container {
   background-color: var(--bg-color);
   color: var(--third-color-light);
   min-height: 100vh;
-}
+} */
 
 .get-started-page__content {
   display: flex;

@@ -1,14 +1,17 @@
 import CodeBlock from '../../components/PageComponents/GetStarted/CodeBlock/CodeBlock';
 import Section from '../../components/PageComponents/GetStarted/Section/Section';
-import Navbar from '../../components/PageComponents/LandingPage/Navbar/Navbar';
+import { useEffect } from 'react';
 import { NotebookPen } from 'lucide-react';
 
 import './GetStarted.css';
 
 function GetStarted() {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
   return (
     <div className="get-started-page__container">
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="get-started-page__content">
         <div className="get-started-process__container">
           <h2 className="get-started-process__title">🚀 Getting Started</h2>
