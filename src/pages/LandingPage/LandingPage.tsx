@@ -1,10 +1,11 @@
-import { NavLink, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 // import Navbar from '../../components/PageComponents/LandingPage/Navbar/Navbar';
 
 import './LandingPage.css';
 import HeroSection from '../../components/PageComponents/LandingPage/HeroSection/HeroSection';
 import FeatureSection from '../../components/PageComponents/LandingPage/FeatureSection/FeatureSection';
 import { useEffect } from 'react';
+import DemoSection from '../../components/PageComponents/LandingPage/DemoSection/DemoSection';
 
 function LandingPage() {
   const { hash } = useLocation();
@@ -28,29 +29,7 @@ function LandingPage() {
       <div className="container">
         <HeroSection />
         <FeatureSection />
-
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <h2 className="text-blue-500">---Demo---</h2>
-          <h3 className="text-green-500">*User Profile*</h3>
-          <h4>Input Type</h4>
-          <ul>
-            <li>text</li>
-            <li>email</li>
-            <li>date</li>
-            <li>file</li>
-            <li>checkbox</li>
-          </ul>
-          <NavLink to="/demo/user-profile">User Profile</NavLink>
-          <h3 className="text-green-500">*Flight Reservation*</h3>
-          <ul>
-            <li>Input Type</li>
-            <li>select</li>
-            <li>date</li>
-            <li>number</li>
-            <li>switch</li>
-          </ul>
-          <NavLink to="/demo/flight-reservation">Flight Reservation</NavLink>
-        </div>
+        <DemoSection />
       </div>
     </div>
   );

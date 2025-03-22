@@ -1,0 +1,39 @@
+.feature-section {
+  position: relative;
+  margin-top: 5rem;
+  margin-bottom: 22rem;
+  border-bottom: 1px solid #262626;
+  min-height: 800px;
+}
+
+.demo-header {
+  text-align: center;
+}
+
+.demo-badge {
+  background-color: #171717;
+  color: var(--logo-color);
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+  text-transform: uppercase;
+}
+
+.demo-title {
+  font-size: 2rem;
+  margin-top: 9rem;
+  letter-spacing: 0.025em;
+}
+
+.text-red-500 {
+  color: rgb(255, 54, 27);
+}
+
+.text-blue-500 {
+  color: rgb(0, 153, 255);
+}
+
+.text-green-500 {
+  color: rgb(0, 134, 18);
+}
