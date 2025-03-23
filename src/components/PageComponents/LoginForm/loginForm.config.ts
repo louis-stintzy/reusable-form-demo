@@ -1,20 +1,19 @@
 /**
  * Configuration du formulaire de connexion.
  *
- * - Définition du titre, des boutons et des champs.
- * - `FormField<LoginCredentials>` garantit que `id` correspond à une clé de `LoginCredentials`.
- * - `footerLink` contient un lien vers la page de réinitialisation du mot de passe.
+ * - Définition du titre, des champs et du bouton de soumission.
+ * - `fields` contient les champs `email` et `password`.
+ * - `submitButton` contient le texte du bouton de soumission et l'icône de chargement.
+ * - `FormConfig<LoginCredentials>` garantit que `id` correspond à une clé de `LoginCredentials`.
+ * - `footerMessage` contient un lien vers la page de création de compte.
  */
 
 import { LoginCredentials } from '../../../@types/auth';
 import { FormConfig } from '../../../@types/form';
+import loader from '../../../assets/loader-circle.svg';
 
 export const loginFormConfig: FormConfig<LoginCredentials> = {
   title: 'Login',
-  buttonText: {
-    loading: 'Logging in...',
-    default: 'Log in',
-  },
   fields: [
     {
       label: 'ENTER EMAIL',
@@ -33,9 +32,20 @@ export const loginFormConfig: FormConfig<LoginCredentials> = {
       required: true,
     },
   ],
-  footerLink: {
-    text: 'Forgot password?',
-    linkText: 'Reset now',
-    linkTo: '/reset-password',
+  submitButton: {
+    loading: {
+      type: 'image',
+      content: loader,
+    },
+    default: {
+      type: 'text',
+      content: 'Log in',
+    },
+  },
+  footerMessage: {
+    type: 'default',
+    text: "Don't have an account?",
+    linkText: 'Sign up',
+    linkTo: '/signup',
   },
 };

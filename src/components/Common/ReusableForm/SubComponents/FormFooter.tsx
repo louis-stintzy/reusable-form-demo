@@ -3,26 +3,25 @@
  *
  * @param {Object} props - Les propriétés du composant
  * @param {string} props.formattedTitle - Titre du formulaire formaté pour les classNames CSS
- * @param {Object} props.footerLink - Texte et lien à afficher
- * @param {string} props.footerLink.text - Texte d'accompagnement
- * @param {string} props.footerLink.linkText - Texte du lien cliquable
- * @param {string} props.footerLink.linkTo - URL vers laquelle redirige le lien
+ * @param {Object} props.footerMessage - Texte et lien à afficher
+ * @param {string} props.footerMessage.type - Type de message (default, error, success, info)
+ * @param {string} props.footerMessage.text - Texte d'accompagnement
+ * @param {string} props.footerMessage.linkText - Texte du lien cliquable
+ * @param {string} props.footerMessage.linkTo - URL vers laquelle redirige le lien
  */
 
 import { NavLink } from 'react-router-dom';
+import { FooterMessageData } from '../../../../@types/form';
 
 interface FormFooterProps {
   formattedTitle: string;
-  type: 'default' | 'error' | 'success';
-  footerLink: {
-    text?: string;
-    linkText?: string;
-    linkTo?: string;
-  };
+  footerMessage: FooterMessageData;
 }
 
-function FormFooter({ formattedTitle, type, footerLink }: FormFooterProps) {
-  const { text, linkText, linkTo } = footerLink;
+function FormFooter({ formattedTitle, footerMessage }: FormFooterProps) {
+  const { type, text, linkText, linkTo } = footerMessage;
+  if (type === 'none') return null;
+  // TODO: changer les nom des classes pour "message" et pas "link" ici et dans la doc et dans le css des formulaires
   return (
     <div className={`${formattedTitle}-form__link-container--${type}`}>
       {text && (

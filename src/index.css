@@ -1,6 +1,9 @@
 /*=============== GOOGLE FONTS ===============*/
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap');
 
+/*=============== TAILWIND ===============*/
+/* @import 'tailwindcss' prefix(tw); */
+
 /*=============== VARIABLES CSS ===============*/
 :root {
   /*========== Colors ==========*/
@@ -18,6 +21,16 @@
   --gray-color-dark: #252525;
   --black-color: #020202;
 
+  --blue: #2fa8f8;
+  --logo-color: #6662ff;
+  --logo-color-light: #7473ff;
+  --bg-color: #101828;
+  --bg-color-light: #141e30;
+
+  --card-bg: #1e293b;
+  --card-border: #334155;
+  --card-hover-border: #4b5563;
+
   /*========== Font and typography ==========*/
   --body-font: 'Poppins', sans-serif;
   --large-font-size: 2rem;
@@ -26,7 +39,24 @@
   --tiny-font-size: 0.5rem;
 }
 
+* {
+  box-sizing: border-box;
+  /* margin: 0;
+  padding: 0; */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--body-font);
   font-size: var(--normal-font-size);
+  background-color: var(--bg-color);
+  color: var(--third-color-light);
+  line-height: 1.5;
+  min-height: 100vh;
+
+  /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+    "Helvetica Neue", sans-serif; */
 }

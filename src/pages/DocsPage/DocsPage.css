@@ -1,0 +1,90 @@
+/* Container */
+.docs-container {
+  background-color: #101828; /* ton fond personnalisé */
+  color: #f9fafb; /* couleur de texte claire et visible */
+  max-width: 900px; /* largeur confortable du texte */
+  margin: 0 auto; /* centré horizontalement */
+  padding: 2rem;
+  box-sizing: border-box;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.1s ease-in-out;
+}
+
+/* titres et paragraphes */
+.docs-container h1,
+.docs-container h2,
+.docs-container h3,
+.docs-container h4,
+.docs-container h5,
+.docs-container h6,
+.docs-container p {
+  color: var(--third-color-light);
+}
+
+.docs-container h2,
+.docs-container h3 {
+  margin: 3.5rem auto 2rem auto;
+}
+
+.docs-container h1 {
+  margin-bottom: 3.5rem;
+}
+
+/* tableaux */
+.docs-container table {
+  width: 100%;
+  overflow-x: auto;
+  display: block;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+}
+
+.docs-container th,
+.docs-container td {
+  border: 1px solid #475467;
+  padding: 0.75rem;
+  color: #f0f4f8;
+}
+
+.docs-container th {
+  background-color: #1d2939;
+}
+
+/* .docs-container tr:nth-child(even) {
+  background-color: #1f2a37;
+}
+
+.docs-container tr:nth-child(odd) {
+  background-color: #27303f;
+} */
+
+.docs-container td {
+  background-color: #1e293b;
+}
+
+/* code */
+.docs-container code {
+  background-color: #334155;
+  color: #f3f4f6;
+  border-radius: 4px;
+  padding: 0.2rem 0.4rem;
+}
+
+.docs-container pre {
+  background-color: #1e293b;
+  padding: 1rem;
+  overflow: auto;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+/* Liens plus visibles */
+.docs-container a {
+  color: var(--blue);
+  text-decoration: none;
+}
+
+.docs-container a:hover {
+  text-decoration: underline;
+}

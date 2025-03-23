@@ -11,15 +11,135 @@ This component is a reusable and configurable standard form using :
 
 The ReusableForm is based on :
 
-- A configuration file (formConfig), defining the fields, title, button texts and footer
-- A Zod validation schema (formSchema), guaranteeing that the data entered is correct
-- Error handling based on react-hook-form and Zod
+- A `configuration file`, formConfig, defining the fields, title, button texts and footer
+- A Zod `validation schema`, formSchema, guaranteeing that the data entered is correct
+- `Error handling` based on `react-hook-form` and `Zod`
+- `Dynamic submission handling` through the action function
+- Optional `footer messages` to provide additional guidance or feedback to users
 
-| **Prop**     | **Expected Type**                                              | **Description**                                                                      |
-| ------------ | -------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| `T`          | `FieldValues` (e.g, `LoginCredentials`, `RegisterCredentials`) | Type of form data (submitted values)                                                 |
-| `formConfig` | `FormConfig<T>`                                                | Form configuration : title, fields (labels, type, placeholder...), button texts etc. |
-| `formSchema` | `ZodSchema<T>`                                                 | `Zod` schema for field validation.                                                   |
+| **Prop**        | **Expected Type**                                              | **Description**                                                                      |
+| --------------- | -------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| `T`             | `FieldValues` (e.g, `LoginCredentials`, `RegisterCredentials`) | Type of form data (submitted values)                                                 |
+| `formConfig`    | `FormConfig<T>`                                                | Form configuration : title, fields (labels, type, placeholder...), button texts etc. |
+| `formSchema`    | `ZodSchema<T>`                                                 | `Zod` schema for field validation.                                                   |
+| `isLoading`     | `boolean`                                                      | Displays a loading state on the submit button                                        |
+| `footerMessage` | `FooterMessageData` _(optional)_                               | Message displayed at the bottom of the form, with an optional link                   |
+| `action`        | `(data: T) => void`                                            | Function called on form submission                                                   |
+
+## 🚩 Handling Required Fields (`required`)
+
+In the `ReusableForm`, `required` defined in form configuration fields **is not managed by `react-hook-form` directly**.
+
+Validation of required fields is handled entirely by the **Zod schema**. The actual validation of submitted data **does not depend on the `required` prop, but only on the Zod** validation scheme.
+
+The `required: true` option defined in the form configuration (`formConfig`) corresponds to the `required` attribute (see [HTML attribute: required](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/required))
+
+## 🔎 Watching Field Values (`watch`) and 🛑 Field Desactivation
+
+The `ReusableForm` component utilizes `watch` from **react-hook-form** to dynamically observe changes in form fields. This allows fields to be dynamically deactivated according to conditions based on other fields in the form.
+
+### Example usage
+
+In your form configuration, you can define conditional field disabling:
+
+```typescript
+options: {
+  fieldsDesactivation: [
+    // Disable "returnDate" if "tripType" is set to "OneWay"
+    {
+      field: 'returnDate', // the field to be deactivated.
+      condition: {
+        field: 'tripType', // field whose value is being monitored
+        value: 'OneWay', // value triggering deactivation
+      },
+    },
+  ],
+},
+```
+
+This configuration will disable the field with id returnDate whenever the watched field tripType has the value "OneWay".
+
+## ✅ Managing the `Submit Button`
+
+The `submitButton` can dynamically display either text or an image.
+
+### How to configure the submit button
+
+In the form configuration, define the `submitButton` property as follows:
+
+```ts
+import loader from '../../../assets/loader-circle.svg';
+
+submitButton: {
+  loading: {
+    type: 'image',
+    content: loader,
+  },
+  default: {
+    type: 'text',
+    content: 'Log in',
+  },
+};
+```
+
+You can specify:
+
+- type: **text** → A text label
+- type: **image** → An image (local file or URL)
+
+How does it behave ?
+
+- When **isLoading = true**, the loading version of the button will be displayed.
+- When **isLoading = false**, the default version of the button will be displayed.
+
+## 💬 Managing the `FormFooter`
+
+The `FormFooter` is an optional section of the `ReusableForm` that displays contextual messages (e.g., errors, success, or additional information) at the bottom of the form.
+
+### Message types
+
+- `default`
+- `info`
+- `success`
+- `error`
+- `none`
+
+### How it works
+
+- You can define footerMessage as follows :
+
+  ```ts
+  footerMessage: {
+      type: 'default',
+      text: "Don't have an account?",
+      linkText: 'Sign up',
+      linkTo: '/signup',
+  },
+  ```
+
+- If you want to **reserve space** for a future message (a possible error or other information without defining a default message), you can set:
+
+  ```ts
+  footerMessage: {
+    type: 'default',
+    text: '',
+    linkText: '',
+    linkTo: '',
+  }
+  ```
+
+- If you want to completely hide the footer (without reserving any space), set the type to 'none' as follows::
+
+  ```ts
+   footerMessage: {
+     type: 'none',
+     text: undefined,
+     linkText: undefined,
+     linkTo: undefined,
+   }
+  ```
+
+With type 'none', `FormFooter` is explicitly hidden via `return null`.
 
 ## 🎨 Customizing styles
 
@@ -57,11 +177,14 @@ For example :
 | **FormInput**        | Container for label & input                                                  | `${formattedTitle}-form__input-container`         | `.sign-up-form__input-container {}`         |
 | **FormInput**        | Label for input                                                              | `${formattedTitle}-form__label`                   | `.sign-up-form__label {}`                   |
 | **FormInput**        | Input field                                                                  | `${formattedTitle}-form__input`                   | `.sign-up-form__input {}`                   |
+| **FormInput**        | Checkbox input to turn it into a switch                                      | `${formattedTitle}-form__checkbox-switch`         | `.sign-up-form__checkbox-switch {}`         |
 | **FormInput**        | Container for input error message                                            | `${formattedTitle}-form__error-container`         | `.sign-up-form__error-container {}`         |
 | **FormInput**        | Input error message text                                                     | `${formattedTitle}-form__error`                   | `.sign-up-form__error {}`                   |
 | **FormSubmitButton** | Container for submit button                                                  | `${formattedTitle}-form__button-container`        | `.sign-up-form__button-container {}`        |
 | **FormSubmitButton** | Wrapper for submit button                                                    | `${formattedTitle}-form__button-wrapper`          | `.sign-up-form__button-wrapper {}`          |
 | **FormSubmitButton** | Submit button                                                                | `${formattedTitle}-form__button`                  | `.sign-up-form__button {}`                  |
+| **FormSubmitButton** | Button icon (when type is image, default state)                              | `${formattedTitle}-form__button-icon--default`    | `.sign-up-form__button-icon--default {}`    |
+| **FormSubmitButton** | Button icon (when type is image, loading state)                              | `${formattedTitle}-form__button-icon--default`    | `.sign-up-form__button-icon--loading {}`    |
 | **FormFooter**       | Container for footer (optional)                                              | `${formattedTitle}-form__link-container--${type}` | `.sign-up-form__link-container--default {}` |
 | **FormFooter**       | Message (optional, can define a message type: default, success, error, etc.) | `${formattedTitle}-form__link-message--${type}`   | `.sign-up-form__link-message--default {}`   |
 | **FormFooter**       | Link available (optionnal)                                                   | `${formattedTitle}-form__link--${type}`           | `.sign-up-form__link--default {}`           |
@@ -82,28 +205,32 @@ export interface RegisterCredentials {
 ### Defining form configuration
 
 ```ts
+export interface ButtonContentData {
+  type: 'text' | 'image';
+  content: string;
+}
+
+export interface FooterMessageData {
+  type: 'default' | 'error' | 'success' | 'info' | 'none';
+  text?: string;
+  linkText?: string;
+  linkTo?: string;
+}
+
 export interface FormConfig<T extends FieldValues> {
   title: string;
-  buttonText: {
-    loading: string;
-    default: string;
-  };
   fields: FormField<T>[];
-  footerLink?: {
-    text?: string;
-    linkText?: string;
-    linkTo?: string;
+  submitButton: {
+    loading: ButtonContentData;
+    default: ButtonContentData;
   };
+  footerMessage?: FooterMessageData;
 }
 ```
 
 ```ts
 export const signupFormConfig: FormConfig<RegisterCredentials> = {
   title: 'Sign up',
-  buttonText: {
-    loading: 'Signing up...',
-    default: 'Sign up',
-  },
   fields: [
     {
       label: 'ENTER NAME',
@@ -137,7 +264,18 @@ export const signupFormConfig: FormConfig<RegisterCredentials> = {
       required: true,
     },
   ],
-  footerLink: {
+  submitButton: {
+    loading: {
+      type: 'image',
+      content: loader,
+    },
+    default: {
+      type: 'text',
+      content: 'Sign up',
+    },
+  },
+  footerMessage: {
+    type: 'default',
     text: 'Already have an account ?',
     linkText: 'Login now',
     linkTo: '/login',
@@ -214,6 +352,6 @@ export default SignupForm;
 
 - **Tailwind CSS**
 
-- **State Management (Store)**
-
 - **Backend Integration**
+
+- **Form generator**

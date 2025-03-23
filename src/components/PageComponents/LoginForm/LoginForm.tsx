@@ -6,18 +6,35 @@
  * - Affiche les messages d'erreur spécifiques à chaque champ en fonction du schéma Zod.
  */
 
+import { useEffect } from 'react';
 import { LoginCredentials } from '../../../@types/auth';
+import { useAuth } from '../../../store/hooks/useAuth';
 import ReusableForm from '../../Common/ReusableForm/ReusableForm';
 import { loginFormConfig } from './loginForm.config';
 import { loginFormSchema } from './loginForm.schema';
 
 import './LoginForm.style.css';
+import { useNavigate } from 'react-router-dom';
 
 function LoginForm() {
+  const { isLoading, isAuthenticated, message, login, resetMessage } =
+    useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      void navigate('/dashboard');
+    }
+    return () => resetMessage();
+  }, [isAuthenticated, navigate, resetMessage]);
+
   return (
     <ReusableForm<LoginCredentials>
+      isLoading={isLoading}
       formConfig={loginFormConfig}
       formSchema={loginFormSchema}
+      action={login}
+      footerMessage={message ?? undefined}
     />
   );
 }

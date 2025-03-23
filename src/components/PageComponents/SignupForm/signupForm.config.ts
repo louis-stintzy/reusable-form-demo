@@ -3,18 +3,15 @@
  *
  * - Définition du titre, des boutons et des champs.
  * - `FormField<RegisterCredentials>` garantit que `id` correspond à une clé de `RegisterCredentials`.
- * - `footerLink` contient un lien vers la page de connexion si l'utilisateur a déjà un compte.
+ * - `footerMessage` contient un lien vers la page de connexion si l'utilisateur a déjà un compte.
  */
 
 import { RegisterCredentials } from '../../../@types/auth';
 import { FormConfig } from '../../../@types/form';
+import loader from '../../../assets/loader-circle.svg';
 
 export const signupFormConfig: FormConfig<RegisterCredentials> = {
   title: 'Sign up',
-  buttonText: {
-    loading: 'Signing up...',
-    default: 'Sign up',
-  },
   fields: [
     {
       label: 'ENTER NAME',
@@ -48,7 +45,18 @@ export const signupFormConfig: FormConfig<RegisterCredentials> = {
       required: true,
     },
   ],
-  footerLink: {
+  submitButton: {
+    loading: {
+      type: 'image',
+      content: loader,
+    },
+    default: {
+      type: 'text',
+      content: 'Sign up',
+    },
+  },
+  footerMessage: {
+    type: 'default',
     text: 'Already have an account ?',
     linkText: 'Login now',
     linkTo: '/login',
