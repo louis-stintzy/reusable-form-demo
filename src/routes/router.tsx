@@ -12,6 +12,7 @@ import LandingPage from '../pages/LandingPage/LandingPage';
 import StartProject from '../pages/StartProject/StartProject';
 import GetStarted from '../pages/GetStarted/GetStarted';
 import Layout from '../components/Common/Layout/Layout';
+import DocsPage from '../pages/DocsPage/DocsPage';
 
 export const routerConfig = [
   {
@@ -24,6 +25,10 @@ export const routerConfig = [
           {
             path: '',
             element: <LandingPage />,
+          },
+          {
+            path: 'docs',
+            element: <DocsPage />,
           },
           {
             path: 'get-started',

@@ -20,9 +20,12 @@ function HeroSection() {
         {/* <a href="#" className="btn-start">
           Start for free
         </a> */}
-        <a href="#" className="btn-docs">
+        {/* <a href="#" className="btn-docs">
           Documentation
-        </a>
+        </a> */}
+        <NavLink to="/docs" className="btn-docs">
+          Documentation
+        </NavLink>
       </div>
       {/* <div className="video-container">
          <video autoPlay loop muted className="hero-video">

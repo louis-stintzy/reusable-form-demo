@@ -16,8 +16,8 @@ function Navbar() {
 
   const navLinks = [
     { title: 'Features', path: '/#features' },
-    { title: 'Demo', path: '/#demo' },
-    { title: 'Testimonials', path: '#' },
+    { title: 'Showcase', path: '/#showcase' },
+    { title: 'Docs', path: '/docs' },
     { title: 'Get Started', path: '/get-started' },
   ];
   return (

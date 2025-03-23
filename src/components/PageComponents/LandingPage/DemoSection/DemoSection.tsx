@@ -36,11 +36,11 @@ function DemoSection() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
   return (
-    <div className="demo-section" id="demo">
+    <div className="demo-section" id="showcase">
       <div className="demo-header">
-        <span className="demo-badge">Demo</span>
+        <span className="demo-badge">Showcase</span>
         <h2 className="demo-title">
-          ReusableForm <span className="demo-highlight">Demo</span>
+          ReusableForm <span className="demo-highlight">Showcase</span>
         </h2>
       </div>
       <div className="demo-container">
