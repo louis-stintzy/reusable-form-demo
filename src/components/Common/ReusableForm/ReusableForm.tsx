@@ -40,52 +40,19 @@ function ReusableForm<T extends FieldValues>({
 }: ReusableFormProps<T>) {
   const {
     register,
+    watch,
+    setValue,
     handleSubmit,
     formState: { errors },
   } = useForm<T>({
     resolver: zodResolver(formSchema),
   });
 
-  // const [footerMessage, setFooterMessage] = useState<{
-  //   type: 'error' | 'success' | 'default';
-  //   content: {
-  //     text: string;
-  //     linkText: string;
-  //     linkTo: string;
-  //   };
-  // } | null>(null);
   const title = formConfig.title;
   const formattedTitle = formatTitle(title);
 
-  // note : Simulation de l'état de chargement, de succès et d'erreur
-
-  // const footerError = {
-  //   text: 'Email already exists,',
-  //   linkText: 'please login ',
-  //   linkTo: '/login',
-  // };
-  // const footerSuccess = {
-  //   text: 'Account created successfully',
-  //   linkText: 'Login now',
-  //   linkTo: '/login',
-  // };
-
   const onSubmit: SubmitHandler<T> = (data) => {
-    console.log('Données du formulaire', data);
     action(data);
-    // note : ici, on simule un appel API pour vérifier si l'email existe déjà
-    // if (data.email === 'bad@mail.com') {
-    //   setFooterMessage({
-    //     type: 'error',
-    //     content: footerError,
-    //   });
-    // }
-    // if (data.email === 'good@mail.com') {
-    //   setFooterMessage({
-    //     type: 'success',
-    //     content: footerSuccess,
-    //   });
-    // }
   };
 
   const [animationKey, setAnimationKey] = useState(0);
@@ -105,8 +72,11 @@ function ReusableForm<T extends FieldValues>({
         <FormInputs<T>
           formattedTitle={formattedTitle}
           fields={formConfig.fields}
+          options={formConfig.options}
           errors={errors}
           register={register}
+          watch={watch}
+          setValue={setValue}
         />
         <FormSubmitButton
           formattedTitle={formattedTitle}

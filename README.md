@@ -26,6 +26,39 @@ The ReusableForm is based on :
 | `footerMessage` | `FooterMessageData` _(optional)_                               | Message displayed at the bottom of the form, with an optional link                   |
 | `action`        | `(data: T) => void`                                            | Function called on form submission                                                   |
 
+## 🚩 Handling Required Fields (`required`)
+
+In the `ReusableForm`, `required` defined in form configuration fields **is not managed by `react-hook-form` directly**.
+
+Validation of required fields is handled entirely by the **Zod schema**. The actual validation of submitted data **does not depend on the `required` prop, but only on the Zod** validation scheme.
+
+The `required: true` option defined in the form configuration (`formConfig`) corresponds to the `required` attribute (see [HTML attribute: required](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/required))
+
+## 🔎 Watching Field Values (`watch`) and 🛑 Field Desactivation
+
+The `ReusableForm` component utilizes `watch` from **react-hook-form** to dynamically observe changes in form fields. This allows fields to be dynamically deactivated according to conditions based on other fields in the form.
+
+### Example usage
+
+In your form configuration, you can define conditional field disabling:
+
+```typescript
+options: {
+  fieldsDesactivation: [
+    // Disable "returnDate" if "tripType" is set to "OneWay"
+    {
+      field: 'returnDate', // the field to be deactivated.
+      condition: {
+        field: 'tripType', // field whose value is being monitored
+        value: 'OneWay', // value triggering deactivation
+      },
+    },
+  ],
+},
+```
+
+This configuration will disable the field with id returnDate whenever the watched field tripType has the value "OneWay".
+
 ## ✅ Managing the `Submit Button`
 
 The `submitButton` can dynamically display either text or an image.
@@ -144,6 +177,7 @@ For example :
 | **FormInput**        | Container for label & input                                                  | `${formattedTitle}-form__input-container`         | `.sign-up-form__input-container {}`         |
 | **FormInput**        | Label for input                                                              | `${formattedTitle}-form__label`                   | `.sign-up-form__label {}`                   |
 | **FormInput**        | Input field                                                                  | `${formattedTitle}-form__input`                   | `.sign-up-form__input {}`                   |
+| **FormInput**        | Checkbox input to turn it into a switch                                      | `${formattedTitle}-form__checkbox-switch`         | `.sign-up-form__checkbox-switch {}`         |
 | **FormInput**        | Container for input error message                                            | `${formattedTitle}-form__error-container`         | `.sign-up-form__error-container {}`         |
 | **FormInput**        | Input error message text                                                     | `${formattedTitle}-form__error`                   | `.sign-up-form__error {}`                   |
 | **FormSubmitButton** | Container for submit button                                                  | `${formattedTitle}-form__button-container`        | `.sign-up-form__button-container {}`        |

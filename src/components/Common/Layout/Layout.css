@@ -1,0 +1,5 @@
+.layout {
+  background-color: var(--bg-color);
+  color: var(--third-color-light);
+  min-height: 100vh;
+}

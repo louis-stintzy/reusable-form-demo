@@ -1,0 +1,126 @@
+.feature-section {
+  position: relative;
+  margin-top: 5rem;
+  margin-bottom: 15rem;
+  /* border-bottom: 1px solid #262626; */
+  min-height: 800px;
+}
+
+.feature-header {
+  text-align: center;
+}
+
+.feature-badge {
+  background-color: #171717;
+  color: var(--logo-color);
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+  text-transform: uppercase;
+}
+
+.feature-title {
+  font-size: 2rem;
+  margin-top: 9rem;
+  letter-spacing: 0.025em;
+}
+
+@media (min-width: 640px) {
+  .feature-title {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .feature-title {
+    font-size: 3.75rem;
+    margin-top: 9rem;
+  }
+}
+
+.feature-highlight {
+  background: var(--blue);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.feature-list {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: space-between;
+}
+
+.feature-item {
+  flex: 1 1 calc(33.333% - 1.5rem); /* 3 items par ligne avec espace (gap) */
+  box-sizing: border-box;
+}
+
+@media (max-width: 1310px) {
+  .feature-item {
+    flex: 1 1 calc(50% - 1.5rem);
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 1024px) {
+  .feature-item {
+    flex: 1 1 calc(100% - 1.5rem);
+    box-sizing: border-box;
+  }
+}
+
+@media (min-width: 1024px) {
+  .feature-list {
+    margin-top: 5rem;
+  }
+}
+
+.feature-item {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+}
+
+@media (min-width: 640px) {
+  .feature-item {
+    width: 50%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .feature-item {
+    width: 33.33%;
+  }
+}
+
+.feature-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2.5rem;
+  width: 2.5rem;
+  padding: 0.5rem;
+  border-radius: 9999px;
+  margin-right: 1.5rem;
+}
+
+.feature-content {
+  flex: 1;
+}
+
+.feature-name {
+  margin-top: 0.25rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+}
+
+.feature-description {
+  font-size: 1rem;
+  color: #737373;
+  padding: 0.5rem;
+  margin-bottom: 5rem;
+}
