@@ -224,14 +224,27 @@
 }
 
 /* ----- Mobile Menu ----- */
+
+.mobile-menu-button {
+  display: none;
+  color: var(--third-color-light);
+}
+
+.mobile-menu-button:hover {
+  color: var(--logo-color);
+}
+
 .mobile-menu {
   display: none;
   position: fixed;
-  top: 0;
+  top: 64px;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: var(--bg-color);
+  width: 250px;
+  height: calc(100vh - 64px);
+  background-color: var(--bg-color-light);
+  border-top: 1px solid var(--card-border);
+  border-right: 1px solid var(--card-border);
+  padding: 1rem;
   z-index: 100;
 }
 
@@ -255,15 +268,9 @@
 }
 
 .mobile-logout:hover {
-  color: var(--logo-color);
+  color: var(--blue);
 }
 
-.mobile-menu-button button {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: inherit;
-}
 @media (max-width: 1024px) {
   .nav-links {
     display: none;
@@ -277,6 +284,7 @@
     z-index: 101;
     display: flex;
     background-color: none;
+    font: none;
   }
 
   .mobile-menu {
@@ -287,7 +295,7 @@
     background-color: var(--bg-color-light);
     align-items: center;
     max-width: 24rem;
-    height: 100vh;
+    /* height: 100vh; */
   }
 
   .mobile-buttons a {

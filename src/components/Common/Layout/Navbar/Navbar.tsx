@@ -2,17 +2,17 @@ import { NavLink } from 'react-router-dom';
 
 import './Navbar.css';
 import logo from '../../../../assets/logo2.png';
-import menu from '../../../../assets/menu.svg';
-import X from '../../../../assets/x.svg';
 import { useEffect, useRef, useState } from 'react';
 import { useAuth } from '../../../../store/hooks/useAuth';
+import { Menu } from 'lucide-react';
 
 function Navbar() {
   const drawerRef = useRef<HTMLDivElement>(null);
   const { isAuthenticated, logout } = useAuth();
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
-  const toggleNavbar = () => {
-    setMobileDrawerOpen(!mobileDrawerOpen);
+  const toggleNavbar = (action: 'open' | 'close') => {
+    if (action === 'open') setMobileDrawerOpen(true);
+    if (action === 'close') setMobileDrawerOpen(false);
   };
 
   useEffect(() => {
@@ -86,13 +86,13 @@ function Navbar() {
         </ul>
         {/* Mobile Menu Button */}
         <div className="mobile-menu-button">
-          <button onClick={toggleNavbar}>
-            {mobileDrawerOpen ? (
-              <img src={X} alt="close" />
-            ) : (
-              <img src={menu} alt="menu" />
-            )}
-          </button>
+          {mobileDrawerOpen ? (
+            <></>
+          ) : (
+            <button onClick={() => toggleNavbar('open')}>
+              <Menu />
+            </button>
+          )}
         </div>
         {/* Mobile Drawer */}
         {mobileDrawerOpen && (
@@ -112,6 +112,15 @@ function Navbar() {
               {isAuthenticated ? (
                 <>
                   <li className="mobile-nav-item">
+                    <NavLink
+                      to="/dashboard"
+                      className="mobile-dashboard"
+                      onClick={() => setMobileDrawerOpen(false)}
+                    >
+                      Dashboard
+                    </NavLink>
+                  </li>
+                  <li className="mobile-nav-item">
                     <button
                       onClick={() => {
                         logout();
@@ -121,15 +130,6 @@ function Navbar() {
                     >
                       Logout
                     </button>
-                  </li>
-                  <li className="mobile-nav-item">
-                    <NavLink
-                      to="/dashboard"
-                      className="mobile-dashboard"
-                      onClick={() => setMobileDrawerOpen(false)}
-                    >
-                      Dashboard
-                    </NavLink>
                   </li>
                 </>
               ) : (
