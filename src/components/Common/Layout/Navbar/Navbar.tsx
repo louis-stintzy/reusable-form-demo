@@ -5,8 +5,10 @@ import logo from '../../../../assets/logo2.png';
 import menu from '../../../../assets/menu.svg';
 import X from '../../../../assets/x.svg';
 import { useState } from 'react';
+import { useAuth } from '../../../../store/hooks/useAuth';
 
 function Navbar() {
+  const { isAuthenticated, logout } = useAuth();
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
   const toggleNavbar = () => {
     setMobileDrawerOpen(!mobileDrawerOpen);
@@ -40,16 +42,26 @@ function Navbar() {
         </ul>
         {/* Nav Actions */}
         <ul className="nav-actions">
-          <li>
-            <NavLink to="/login" className="btn-signin">
-              Sign In
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/signup" className="btn-create-account">
-              Create an accunt
-            </NavLink>
-          </li>
+          {isAuthenticated ? (
+            <li>
+              <button onClick={logout} className="btn-signin">
+                Logout
+              </button>
+            </li>
+          ) : (
+            <>
+              <li>
+                <NavLink to="/login" className="btn-signin">
+                  Sign In
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/signup" className="btn-create-account">
+                  Create an accunt
+                </NavLink>
+              </li>
+            </>
+          )}
         </ul>
         {/* Mobile Menu Button */}
         <div className="mobile-menu-button">
@@ -70,19 +82,26 @@ function Navbar() {
                   <NavLink to={item.path}>{item.title}</NavLink>
                 </li>
               ))}
-              <li className="mobile-nav-item">
-                <NavLink to="/get-started">Get Started</NavLink>
-              </li>
-              <li className="mobile-nav-item">
-                <NavLink to="/login" className="mobile-signin">
-                  Sign In
-                </NavLink>
-              </li>
-              <li className="mobile-nav-item">
-                <NavLink to="/signup" className="mobile-create-account">
-                  Create an accunt
-                </NavLink>
-              </li>
+              {isAuthenticated ? (
+                <li className="mobile-nav-item">
+                  <NavLink to="/login" className="mobile-signin">
+                    Logout
+                  </NavLink>
+                </li>
+              ) : (
+                <>
+                  <li className="mobile-nav-item">
+                    <NavLink to="/login" className="mobile-signin">
+                      Sign In
+                    </NavLink>
+                  </li>
+                  <li className="mobile-nav-item">
+                    <NavLink to="/signup" className="mobile-create-account">
+                      Create an accunt
+                    </NavLink>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
         )}
