@@ -43,11 +43,18 @@ function Navbar() {
         {/* Nav Actions */}
         <ul className="nav-actions">
           {isAuthenticated ? (
-            <li>
-              <button onClick={logout} className="btn-signin">
-                Logout
-              </button>
-            </li>
+            <>
+              <li>
+                <button onClick={logout} className="btn-logout">
+                  Logout
+                </button>
+              </li>
+              <li>
+                <NavLink to="/dashboard" className="btn-dashboard">
+                  Dashboard
+                </NavLink>
+              </li>
+            </>
           ) : (
             <>
               <li>
