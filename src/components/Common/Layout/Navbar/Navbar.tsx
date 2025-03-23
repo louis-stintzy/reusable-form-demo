@@ -4,15 +4,29 @@ import './Navbar.css';
 import logo from '../../../../assets/logo2.png';
 import menu from '../../../../assets/menu.svg';
 import X from '../../../../assets/x.svg';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useAuth } from '../../../../store/hooks/useAuth';
 
 function Navbar() {
+  const drawerRef = useRef<HTMLDivElement>(null);
   const { isAuthenticated, logout } = useAuth();
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
   const toggleNavbar = () => {
     setMobileDrawerOpen(!mobileDrawerOpen);
   };
+
+  useEffect(() => {
+    const handleOutsideClick = (e: MouseEvent) => {
+      if (drawerRef.current && !drawerRef.current.contains(e.target as Node)) {
+        setMobileDrawerOpen(false);
+      }
+    };
+    if (mobileDrawerOpen)
+      document.addEventListener('mousedown', handleOutsideClick);
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, [mobileDrawerOpen]);
 
   // todo :  les liens doivent renvoyer vers des sections de la page LandingPage (et "logo" vers le haut de la page LandingPage)
 
@@ -82,28 +96,59 @@ function Navbar() {
         </div>
         {/* Mobile Drawer */}
         {mobileDrawerOpen && (
-          <div className="mobile-menu">
+          // <div className="mobile-overlay">
+          <div className="mobile-menu" ref={drawerRef}>
             <ul className="mobile-nav-links">
               {navLinks.map((item, index) => (
                 <li key={index} className="mobile-nav-item">
-                  <NavLink to={item.path}>{item.title}</NavLink>
+                  <NavLink
+                    to={item.path}
+                    onClick={() => setMobileDrawerOpen(false)}
+                  >
+                    {item.title}
+                  </NavLink>
                 </li>
               ))}
               {isAuthenticated ? (
-                <li className="mobile-nav-item">
-                  <NavLink to="/login" className="mobile-signin">
-                    Logout
-                  </NavLink>
-                </li>
+                <>
+                  <li className="mobile-nav-item">
+                    <button
+                      onClick={() => {
+                        logout();
+                        setMobileDrawerOpen(false);
+                      }}
+                      className="mobile-logout"
+                    >
+                      Logout
+                    </button>
+                  </li>
+                  <li className="mobile-nav-item">
+                    <NavLink
+                      to="/dashboard"
+                      className="mobile-dashboard"
+                      onClick={() => setMobileDrawerOpen(false)}
+                    >
+                      Dashboard
+                    </NavLink>
+                  </li>
+                </>
               ) : (
                 <>
                   <li className="mobile-nav-item">
-                    <NavLink to="/login" className="mobile-signin">
+                    <NavLink
+                      to="/login"
+                      className="mobile-signin"
+                      onClick={() => setMobileDrawerOpen(false)}
+                    >
                       Sign In
                     </NavLink>
                   </li>
                   <li className="mobile-nav-item">
-                    <NavLink to="/signup" className="mobile-create-account">
+                    <NavLink
+                      to="/signup"
+                      className="mobile-create-account"
+                      onClick={() => setMobileDrawerOpen(false)}
+                    >
                       Create an accunt
                     </NavLink>
                   </li>
@@ -111,6 +156,7 @@ function Navbar() {
               )}
             </ul>
           </div>
+          // </div>
         )}
         {/* ----- */}
       </div>
