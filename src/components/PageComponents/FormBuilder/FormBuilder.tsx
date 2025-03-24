@@ -4,6 +4,8 @@ import Stepper from './Stepper/Stepper';
 import StepContent from './StepContent/StepContent';
 import ActionButtons from './ActionButtons/ActionButtons';
 
+import './FormBuilder.css';
+
 function FormBuilder() {
   const [activeStep, setActiveStep] = useState<Step>({
     id: 0,
@@ -40,7 +42,11 @@ function FormBuilder() {
   ];
   return (
     <div className="form-builder">
-      <Stepper activeStepName={activeStep.name} steps={steps} />
+      <Stepper
+        activeStepName={activeStep.name}
+        steps={steps}
+        setActiveStep={setActiveStep}
+      />
       <StepContent activeStepName={activeStep.name} />
       <ActionButtons
         activeStepId={activeStep.id}

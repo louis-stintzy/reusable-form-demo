@@ -1,5 +1,7 @@
 import { ActionType, Step } from '../../../../@types/builder';
 
+import './ActionButtons.css';
+
 interface ActionButtonsProps {
   activeStepId: number;
   steps: Step[];
@@ -28,7 +30,7 @@ function ActionButtons({
     }
   };
   return (
-    <div className="form-builder__actions">
+    <div className="form-builder__buttons-wrapper">
       <button
         onClick={() => handleClick('previous')}
         disabled={activeStepId === 0}

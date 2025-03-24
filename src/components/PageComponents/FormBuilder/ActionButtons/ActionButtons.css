@@ -1,0 +1,12 @@
+.form-builder__buttons-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  background-color: #f5f5f5;
+  color: #000;
+}
+
+.form-builder__buttons-wrapper button:hover {
+  background-color: #007bff;
+  color: #fff;
+}

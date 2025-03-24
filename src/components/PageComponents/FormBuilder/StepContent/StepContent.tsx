@@ -1,9 +1,9 @@
 import { StepName } from '../../../../@types/builder';
-import FormFields from '../Steps/FormFields';
-import General from '../Steps/General';
-import Messages from '../Steps/Messages';
-import PreviewGenerate from '../Steps/PreviewGenerate';
-import SubmitButton from '../Steps/SubmitButton';
+import FormFields from './Steps/FormFields/FormFields';
+import General from './Steps/General/General';
+import Messages from './Steps/Message/Messages';
+import PreviewGenerate from './Steps/PreviewGenerate/PreviewGenerate';
+import SubmitButton from './Steps/SubmitButton/SubmitButton';
 
 interface StepContentProps {
   activeStepName: StepName;

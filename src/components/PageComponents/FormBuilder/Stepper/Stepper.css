@@ -1,0 +1,33 @@
+.form-builder__stepper-wrapper {
+  display: flex;
+
+  margin-bottom: 20px;
+}
+
+.form-builder__stepper-step {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20%;
+  height: 4rem;
+  background-color: #f5f5f5;
+  color: #000;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.form-builder__stepper-step:hover {
+  background-color: var(--blue);
+  color: #fff;
+}
+
+.form-builder__stepper-step--active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.form-builder__stepper-step--active:hover {
+  background-color: #007bff;
+  color: #fff;
+}

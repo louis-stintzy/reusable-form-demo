@@ -1,0 +1,9 @@
+.form-builder {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.2rem;
+  margin: 1rem;
+  height: 30rem;
+  background-color: #d6dbdd;
+}

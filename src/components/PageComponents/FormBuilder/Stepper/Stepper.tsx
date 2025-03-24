@@ -1,22 +1,29 @@
 import { Step, StepName } from '../../../../@types/builder';
 
+import './Stepper.css';
+
 interface StepperProps {
   steps: Step[];
   activeStepName: StepName;
+  setActiveStep: (step: Step) => void;
 }
 
-function Stepper({ steps, activeStepName }: StepperProps) {
+function Stepper({ steps, activeStepName, setActiveStep }: StepperProps) {
+  console.log(activeStepName);
   return (
-    <div className="form-builder__stepper">
+    <div className="form-builder__stepper-wrapper">
       {steps.map((step) => (
-        <div
+        <button
           key={step.id}
-          className={`stepper__step ${
-            activeStepName === step.name ? 'stepper__step--active' : ''
+          className={`form-builder__stepper-step ${
+            activeStepName === step.name
+              ? 'form-builder__stepper-step--active'
+              : ''
           }`}
+          onClick={() => setActiveStep(step)}
         >
           {step.title}
-        </div>
+        </button>
       ))}
     </div>
   );
