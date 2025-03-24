@@ -11,6 +11,5 @@ services:
       - rfd_network
 
 networks:
-  default:
-    name: rfd_network
+  rfd_network:
     external: true
