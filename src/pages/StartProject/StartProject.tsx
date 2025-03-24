@@ -1,8 +1,10 @@
+import FormBuilder from '../../components/PageComponents/FormBuilder/FormBuilder';
+
 function StartProject() {
   return (
-    <>
-      <p>StartProject</p>
-    </>
+    <div className="start-project-page__container">
+      <FormBuilder />
+    </div>
   );
 }
 

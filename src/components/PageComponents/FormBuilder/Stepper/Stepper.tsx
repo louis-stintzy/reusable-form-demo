@@ -1,18 +1,18 @@
-import { Step } from '../../../../@types/builder';
+import { Step, StepName } from '../../../../@types/builder';
 
 interface StepperProps {
   steps: Step[];
-  activeStep: string;
+  activeStepName: StepName;
 }
 
-function Stepper({ steps, activeStep }: StepperProps) {
+function Stepper({ steps, activeStepName }: StepperProps) {
   return (
     <div className="form-builder__stepper">
       {steps.map((step) => (
         <div
           key={step.id}
           className={`stepper__step ${
-            activeStep === step.id ? 'stepper__step--active' : ''
+            activeStepName === step.name ? 'stepper__step--active' : ''
           }`}
         >
           {step.title}

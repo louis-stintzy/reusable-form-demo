@@ -2,59 +2,51 @@ import { useState } from 'react';
 import { Step } from '../../../@types/builder';
 import Stepper from './Stepper/Stepper';
 import StepContent from './StepContent/StepContent';
+import ActionButtons from './ActionButtons/ActionButtons';
 
 function FormBuilder() {
   const [activeStep, setActiveStep] = useState<Step>({
-    index: 0,
-    id: 'general',
+    id: 0,
+    name: 'general',
     title: 'General',
   });
 
   const steps: Step[] = [
     {
-      index: 0,
-      id: 'general',
+      id: 0,
+      name: 'general',
       title: 'General',
     },
     {
-      index: 1,
-      id: 'form-fields',
+      id: 1,
+      name: 'form-fields',
       title: 'Form Fields',
     },
     {
-      index: 2,
-      id: 'submit-button',
+      id: 2,
+      name: 'submit-button',
       title: 'Submit Button',
     },
     {
-      index: 3,
-      id: 'messages',
+      id: 3,
+      name: 'messages',
       title: 'Messages',
     },
     {
-      index: 4,
-      id: 'preview-generate',
+      id: 4,
+      name: 'preview-generate',
       title: 'Preview & Generate',
     },
   ];
   return (
     <div className="form-builder">
-      <Stepper activeStep={activeStep.id} steps={steps} />
-      <StepContent activeStep={activeStep.id} />
-      <div className="form-builder__actions">
-        <button
-          onClick={() => setActiveStep(activeStep.index - 1)}
-          disabled={activeStep.index === 0}
-        >
-          Back
-        </button>
-        <button
-          onClick={() => setActiveStep(activeStep.index + 1)}
-          disabled={activeStep.index === steps.length - 1}
-        >
-          Next
-        </button>
-      </div>
+      <Stepper activeStepName={activeStep.name} steps={steps} />
+      <StepContent activeStepName={activeStep.name} />
+      <ActionButtons
+        activeStepId={activeStep.id}
+        steps={steps}
+        setActiveStep={setActiveStep}
+      />
     </div>
   );
 }

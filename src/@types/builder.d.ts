@@ -1,4 +1,6 @@
-export type StepId =
+export type ActionType = 'next' | 'previous' | 'submit';
+
+export type StepName =
   | 'general'
   | 'form-fields'
   | 'submit-button'
@@ -6,7 +8,7 @@ export type StepId =
   | 'preview-generate';
 
 export interface Step {
-  index: number;
-  id: StepId;
+  id: number;
+  name: StepName;
   title: string;
 }
