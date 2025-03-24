@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiUrl: string = import.meta.env.VITE_API_URL as string;
+const apiUrl = 'https://api.reusableform.diy/api';
 
 export const axiosInstance = axios.create({
   baseURL: apiUrl,
