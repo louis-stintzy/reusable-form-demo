@@ -5,6 +5,8 @@ import Messages from './Steps/Message/Messages';
 import PreviewGenerate from './Steps/PreviewGenerate/PreviewGenerate';
 import SubmitButton from './Steps/SubmitButton/SubmitButton';
 
+import './StepContent.css';
+
 interface StepContentProps {
   activeStepName: StepName;
 }
