@@ -1,0 +1,16 @@
+services:
+  frontend:
+    image: lstz/reusableform:latest
+    container_name: rfd_frontend
+    restart: always
+    ports:
+      - '3301:3301'
+    environment:
+      - VITE_API_URL=http://rfd_api:3302
+    networks:
+      - rfd_network
+
+networks:
+  default:
+    name: rfd_network
+    external: true
