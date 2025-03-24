@@ -16,8 +16,13 @@ import './SignupForm.style.css';
 function SignupForm() {
   return (
     <ReusableForm<RegisterCredentials>
+      isLoading={false}
       formConfig={signupFormConfig}
       formSchema={signupFormSchema}
+      action={() => {
+        console.log('Signup form submitted');
+      }}
+      footerMessage={undefined}
     />
   );
 }
