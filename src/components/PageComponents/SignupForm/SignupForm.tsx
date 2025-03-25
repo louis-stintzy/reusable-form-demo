@@ -10,19 +10,31 @@ import { signupFormSchema } from './signupForm.schema';
 import { signupFormConfig } from './signupForm.config';
 import { RegisterCredentials } from '../../../@types/auth';
 import ReusableForm from '../../Common/ReusableForm/ReusableForm';
+import { useAuth } from '../../../store/hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 import './SignupForm.style.css';
+import { useEffect } from 'react';
 
 function SignupForm() {
+  const { isLoading, isAuthenticated, message, register, resetMessage } =
+    useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      void navigate('/dashboard');
+    }
+    return () => resetMessage();
+  }, [isAuthenticated, navigate, resetMessage]);
+
   return (
     <ReusableForm<RegisterCredentials>
-      isLoading={false}
+      isLoading={isLoading}
       formConfig={signupFormConfig}
       formSchema={signupFormSchema}
-      action={() => {
-        console.log('Signup form submitted');
-      }}
-      footerMessage={undefined}
+      action={register}
+      footerMessage={message ?? undefined}
     />
   );
 }

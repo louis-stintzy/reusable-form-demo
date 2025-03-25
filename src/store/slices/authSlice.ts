@@ -1,15 +1,13 @@
 import { StateCreator } from 'zustand';
 import type {} from '@redux-devtools/extension';
-import { LoginCredentials } from '../../@types/auth';
-import { loginUser, logoutUser, verifyToken } from '../../services/authService';
+import { LoginCredentials, RegisterCredentials } from '../../@types/auth';
+import {
+  loginUser,
+  logoutUser,
+  registerUser,
+  verifyToken,
+} from '../../services/authService';
 import { FooterMessageData } from '../../@types/form';
-
-// export interface UserData {
-//   id: number;
-//   name: string;
-//   email: string;
-//   role: 'admin' | 'user';
-// }
 
 export interface UserPublicData {
   id: number;
@@ -28,6 +26,7 @@ export interface AuthState {
 
 export interface AuthActions {
   verifyToken: () => Promise<boolean>;
+  register: (credentials: RegisterCredentials) => Promise<void>;
   login: (credentials: LoginCredentials) => Promise<void>;
   logout: () => void;
   resetMessage: () => void;
@@ -61,6 +60,40 @@ export const createAuthSlice: StateCreator<AuthSlice> = (set) => ({
       return false;
     } finally {
       set({ isLoadingAuth: false });
+    }
+  },
+  register: async (credentials) => {
+    // Simulate API call
+    try {
+      console.log('Registering user : ', credentials);
+      set({ isLoadingAuth: true });
+      const user: UserPublicData = await registerUser(credentials);
+      set({
+        isAuthenticated: false,
+        user: user,
+        message: {
+          type: 'success',
+          text: 'Registered successfully',
+          linkText: 'Login now',
+          linkTo: '/login',
+        },
+      });
+    } catch (error) {
+      console.error('Register error : ', error);
+      set({
+        isAuthenticated: false,
+        user: null,
+        message: {
+          type: 'error',
+          text: (error as Error).message,
+          linkText: 'Forgot password ? Reset now',
+          linkTo: '/reset-password',
+        },
+      });
+    } finally {
+      set({ isLoadingAuth: false });
+      // Effacer le message après 5 secondes
+      // setTimeout(() => set({ message: null }), 5000);
     }
   },
   login: async (credentials) => {
