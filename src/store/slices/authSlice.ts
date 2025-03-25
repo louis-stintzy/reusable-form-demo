@@ -106,7 +106,12 @@ export const createAuthSlice: StateCreator<AuthSlice> = (set) => ({
     } catch (error) {
       console.error('Logout error : ', error);
     } finally {
-      set({ isLoadingAuth: false, isAuthenticated: false, user: null });
+      set({
+        isLoadingAuth: false,
+        isAuthenticated: false,
+        user: null,
+        message: null,
+      });
       // localStorage.removeItem('isAuthenticated', 'user');
     }
   },

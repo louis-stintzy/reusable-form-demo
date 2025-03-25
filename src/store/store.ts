@@ -6,14 +6,19 @@ import {
   createFormBuilderSlice,
   FormBuilderSlice,
 } from './slices/formBuilderSlice';
+import {
+  createSavedFormsSlice,
+  SavedFormsSlice,
+} from './slices/savedFormsSlice';
 
-type StoreState = AuthSlice & FormBuilderSlice;
+type StoreState = AuthSlice & FormBuilderSlice & SavedFormsSlice;
 
 const useStore = create<StoreState>()(
   devtools(
     (...a) => ({
       ...createAuthSlice(...a),
       ...createFormBuilderSlice(...a),
+      ...createSavedFormsSlice(...a),
     }),
     { name: 'appStore' }
   )
