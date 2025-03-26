@@ -77,7 +77,8 @@ function DemoSection() {
                 target="_blank"
                 rel="noreferrer"
               >
-                <Braces />
+                {/* //todo: ne regle pas le pb du hover (pas la bonne solution de passer la couleur au svg) => à refaire /!\ index.css*/}
+                <Braces color="var(--logo-color)" />
               </NavLink>
               <NavLink
                 to={demo.link}
@@ -85,7 +86,7 @@ function DemoSection() {
                 target="_blank"
                 rel="noreferrer"
               >
-                <Monitor />
+                <Monitor color="var(--logo-color)" />
               </NavLink>
             </div>
           </div>

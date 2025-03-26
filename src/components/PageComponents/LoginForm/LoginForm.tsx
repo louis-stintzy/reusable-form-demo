@@ -21,6 +21,7 @@ function LoginForm() {
     useAuth();
   const navigate = useNavigate();
 
+  // todo: deplacer la logique sur la page plutot que dans le composant => voir pour un composant RedirectIfAuthenticated (inverse de ProtectedRoute)
   useEffect(() => {
     if (isAuthenticated) {
       void navigate('/dashboard');

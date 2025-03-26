@@ -16,6 +16,8 @@ import DocsPage from '../pages/DocsPage/DocsPage';
 import LoginDemo from '../pages/Demo/LoginDemo/LoginDemo';
 import SignupDemo from '../pages/Demo/SignupDemo/SignupDemo';
 
+// todo: voir pour un composant RedirectIfAuthenticated (inverse de ProtectedRoute)
+
 export const routerConfig = [
   {
     path: '/',
