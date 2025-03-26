@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { NotebookPen } from 'lucide-react';
 
 import './GetStarted.css';
+import { NavLink } from 'react-router-dom';
 
 function GetStarted() {
   useEffect(() => {
@@ -84,6 +85,18 @@ function GetStarted() {
             </p>
             <CodeBlock>{style}</CodeBlock>
             <CodeBlock>{exampleFormCode}</CodeBlock>
+          </Section>
+          <Section title="6️⃣ Start a new project">
+            <p className="get-started-process__description">
+              <NotebookPen size={16} /> Follow the
+              <NavLink
+                to={`/start-project`}
+                className="get-started-process__link"
+              >
+                {` link `}
+              </NavLink>
+              to use our revolutionary tool !
+            </p>
           </Section>
         </div>
       </div>

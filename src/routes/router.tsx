@@ -13,6 +13,10 @@ import StartProject from '../pages/StartProject/StartProject';
 import GetStarted from '../pages/GetStarted/GetStarted';
 import Layout from '../components/Common/Layout/Layout';
 import DocsPage from '../pages/DocsPage/DocsPage';
+import LoginDemo from '../pages/Demo/LoginDemo/LoginDemo';
+import SignupDemo from '../pages/Demo/SignupDemo/SignupDemo';
+
+// todo: voir pour un composant RedirectIfAuthenticated (inverse de ProtectedRoute)
 
 export const routerConfig = [
   {
@@ -63,6 +67,14 @@ export const routerConfig = [
       {
         path: 'demo',
         children: [
+          {
+            path: 'login',
+            element: <LoginDemo />,
+          },
+          {
+            path: 'signup',
+            element: <SignupDemo />,
+          },
           {
             path: 'user-profile',
             element: <UserProfile />,

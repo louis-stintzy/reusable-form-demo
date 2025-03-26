@@ -12,15 +12,16 @@ import { useAuth } from '../../../store/hooks/useAuth';
 import ReusableForm from '../../Common/ReusableForm/ReusableForm';
 import { loginFormConfig } from './loginForm.config';
 import { loginFormSchema } from './loginForm.schema';
+import { useNavigate } from 'react-router-dom';
 
 import './LoginForm.style.css';
-import { useNavigate } from 'react-router-dom';
 
 function LoginForm() {
   const { isLoading, isAuthenticated, message, login, resetMessage } =
     useAuth();
   const navigate = useNavigate();
 
+  // todo: deplacer la logique sur la page plutot que dans le composant => voir pour un composant RedirectIfAuthenticated (inverse de ProtectedRoute)
   useEffect(() => {
     if (isAuthenticated) {
       void navigate('/dashboard');
