@@ -52,6 +52,12 @@
   align-self: flex-start;
 }
 
+.flight-reservation-form__error {
+  font-size: 0.8rem;
+  color: #ff0000;
+  margin-top: 0.5rem;
+}
+
 .flight-reservation-form__button-container {
   grid-column: span 2;
   display: flex;
