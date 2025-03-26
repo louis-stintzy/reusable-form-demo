@@ -1,0 +1,18 @@
+.form-builder {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  color: #ffffff;
+  background-color: #121826;
+}
+
+.form-builder__step-content {
+  margin: 2rem 0;
+  min-height: 500px;
+  background-color: #1e293b;
+  border-radius: 8px;
+  padding: 2rem;
+}

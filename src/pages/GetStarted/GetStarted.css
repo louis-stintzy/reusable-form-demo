@@ -48,6 +48,12 @@
   line-height: 1.5;
 }
 
+.get-started-process__link {
+  color: var(--blue);
+  text-decoration: none;
+  font-weight: 500;
+}
+
 .get-started-process__section-link {
   color: var(--link-color);
   text-decoration: none;

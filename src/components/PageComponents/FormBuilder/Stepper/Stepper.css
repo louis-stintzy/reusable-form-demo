@@ -1,0 +1,31 @@
+.form-builder__stepper-wrapper {
+  display: flex;
+  width: 100%;
+  background-color: #1e293b;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.form-builder__stepper-step {
+  flex: 1;
+  padding: 1rem;
+  text-align: center;
+  background-color: #1e293b;
+  color: #e2e8f0;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.form-builder__stepper-step:hover {
+  background-color: #2d3748;
+}
+
+.form-builder__stepper-step--active {
+  background-color: #3b82f6;
+  color: white;
+}
+.form-builder__stepper-step--active:hover {
+  background-color: #3b82f6;
+}

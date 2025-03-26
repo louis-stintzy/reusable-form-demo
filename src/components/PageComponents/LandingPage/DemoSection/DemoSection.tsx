@@ -3,8 +3,11 @@ import { Check, Braces, Monitor } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import UserProfilePreview from './../../../../assets/user-profile-demo.png';
 import FlightReservationPreview from './../../../../assets/flight-reservation-demo.png';
+import LoginFormDemoPreview from './../../../../assets/login-form-demo.png';
 
 import './DemoSection.css';
+
+// todo: corriger les liens
 
 const demonstrations = [
   {
@@ -15,12 +18,11 @@ const demonstrations = [
     repo: 'https://github.com/louis-stintzy/reusable-form-demo/tree/feat/landing-page/src/components/PageComponents/FormDemo/UserProfileForm',
   },
   {
-    title: 'Demo under construction',
-    image: 'https://placehold.co/300x300',
-    featured: true,
-    features: ['Feature 1', 'Feature 2', 'Feature 3', 'Feature 4'],
-    link: '/demo/under-construction',
-    repo: '/demo/under-construction',
+    title: 'Login Form',
+    image: LoginFormDemoPreview,
+    features: ['Email', 'Password', 'Dynamic message'],
+    link: '/demo/login',
+    repo: 'https://github.com/louis-stintzy/reusable-form-demo/tree/feat/FormBuilder/src/components/PageComponents/FormDemo/LoginFormDemo',
   },
   {
     title: 'Flight Reservation',
@@ -75,7 +77,8 @@ function DemoSection() {
                 target="_blank"
                 rel="noreferrer"
               >
-                <Braces />
+                {/* //todo: ne regle pas le pb du hover (pas la bonne solution de passer la couleur au svg) => à refaire /!\ index.css*/}
+                <Braces color="var(--logo-color)" />
               </NavLink>
               <NavLink
                 to={demo.link}
@@ -83,7 +86,7 @@ function DemoSection() {
                 target="_blank"
                 rel="noreferrer"
               >
-                <Monitor />
+                <Monitor color="var(--logo-color)" />
               </NavLink>
             </div>
           </div>
