@@ -135,7 +135,7 @@
   gap: 1rem;
 }
 
-.demo-button {
+.demo-button a {
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -144,7 +144,7 @@
   padding: 1rem;
   font-size: 1.125rem;
   /* border: 1px solid #0cadc2; */
-  color: var(--logo-color);
+  color: var(--logo-color) !important;
   /* background-color: #0c88c2; */
   border-radius: 0.5rem;
   transition: background-color 0.3s ease;
@@ -152,6 +152,6 @@
   text-decoration: none;
 }
 
-.demo-button:hover {
-  color: var(--third-color-light);
+.demo-button:hover a {
+  color: var(--third-color-light) !important;
 }
